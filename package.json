@@ -1,0 +1,26 @@
+{
+  "name": "brettspiel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JairHuamanBellido/brettspiel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JairHuamanBellido/brettspiel/issues"
+  },
+  "homepage": "https://github.com/JairHuamanBellido/brettspiel#readme",
+  "dependencies": {
+    "dotenv": "8.0.0",
+    "ejs": "2.6.1",
+    "express": "4.16.4",
+    "pg": "7.10.0"
+  }
+}
