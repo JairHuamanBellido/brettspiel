@@ -7,13 +7,21 @@ const pool = new Pool({
     password: process.env.PASSWORD,
     port: process.env.PORTDB
 })
+  
 
-getData = async () => {
-    const res = await pool.query('SELECT * FROM person');
+
+
+module.exports.insertNewClient = async (firstName, lastName, username, password) => {
+    
+    // QUERY PARAMETERS
+    const values = [firstName, lastName, username, password];
+    const text = `INSERT INTO ${process.env.CLIENT_TABLE}(first_name,last_name,user_name,password) VALUES ($1,$2,$3,$4)`;
+    const res = await pool.query(text, values);
+
+}
+
+module.exports.allUsers = async () => {
+    const res = await pool.query(`SELECT * FROM ${process.env.CLIENT_TABLE}`);
     await pool.end();
     return res.rows;
 }
-
-
-// return all data of DB Person
-// module.exports.data =  getData();
