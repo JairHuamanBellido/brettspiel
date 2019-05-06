@@ -3,7 +3,15 @@ dotenv.config();
 const express = require('express');
 const app = express();
 const router =  require('./src/router/router')
+const session =  require('express-session');
 
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }))
 
 
 // MIDDLEWARES SETTTING

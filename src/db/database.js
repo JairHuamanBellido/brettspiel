@@ -22,6 +22,11 @@ module.exports.insertNewClient = async (firstName, lastName, username, password)
 
 module.exports.allUsers = async () => {
     const res = await pool.query(`SELECT * FROM ${process.env.CLIENT_TABLE}`);
-    await pool.end();
+    return res.rows;
+}
+
+module.exports.validationLogin = async(username,password)=>{
+    const res =  await pool.query(`SELECT * FROM  ${process.env.CLIENT_TABLE} WHERE user_name='${username}' AND password='${password}'`);
+    console.log(res.rows);
     return res.rows;
 }
