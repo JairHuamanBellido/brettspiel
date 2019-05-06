@@ -8,9 +8,6 @@ const pool = new Pool({
     port: process.env.PORTDB
 })
   
-
-
-
 module.exports.insertNewClient = async (firstName, lastName, username, password) => {
     
     // QUERY PARAMETERS
