@@ -23,11 +23,20 @@ isUserAuthenticated = (req, res, next) => {
 
 // ALL GET METHODS
 
-Router.get('/', isUserAuthenticated, (req, res) => {    
+Router.get('/', isUserAuthenticated, async(req, res) => {
     //console.log('Autentificacion del usuario: '+req.session.userAuthenticated);
-    res.render('home',{
-        isUserAuthenticated:req.session.userAuthenticated
+    const products =  await db.getAllProducts();
+    
+    console.log(req.session.idUser);
+
+
+    res.render('home', {
+        isUserAuthenticated: req.session.userAuthenticated,
+        allProduct: products,
+        user: req.session.idUser
     });
+    
+
 })
 
 Router.get('/login', AuthenticationError, (req, res) => {
@@ -66,12 +75,13 @@ Router.post('/login', async (req, res) => {
         }
         else {
             req.session.userAuthenticated = true;
+            req.session.idUser = obj[0].id;
             res.redirect('/')
         }
     });
 })
 
-Router.post('/logout', (req,res)=>{
+Router.post('/logout', (req, res) => {
     req.session.userAuthenticated = false;
     res.redirect('/');
 })
