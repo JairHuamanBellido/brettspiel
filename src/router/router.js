@@ -13,10 +13,8 @@ AuthenticationError = (req, res, next) => {
 
 isUserAuthenticated = (req, res, next) => {
     if (typeof req.session.userAuthenticated === 'undefined') {
-        //console.log('Seteando a false el valor errLogin');
         req.session.userAuthenticated = false;
     }
-
     next();
 }
 
@@ -24,11 +22,10 @@ isUserAuthenticated = (req, res, next) => {
 // ALL GET METHODS
 
 Router.get('/', isUserAuthenticated, async(req, res) => {
-    //console.log('Autentificacion del usuario: '+req.session.userAuthenticated);
     const products =  await db.getAllProducts();
-    
-    console.log(req.session.idUser);
-
+  
+    // DEBUG
+    // console.log(req.session.idUser);
 
     res.render('home', {
         isUserAuthenticated: req.session.userAuthenticated,
@@ -50,7 +47,11 @@ Router.get('/register', (req, res) => {
     res.render('register');
 })
 
+Router.get('/product/:id', (req,res)=>{
+    console.log(req.params);
 
+    res.send('I am product '+ req.params.id);
+})
 
 // ALL POST METHODS
 Router.post('/register', async (req, res) => {
