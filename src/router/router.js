@@ -21,16 +21,15 @@ isUserAuthenticated = (req, res, next) => {
 
 // ALL GET METHODS
 
-Router.get('/', isUserAuthenticated, async(req, res) => {
-    const products =  await db.getAllProducts();
- 
+Router.get('/', isUserAuthenticated, async (req, res) => {
+    const products = await db.getAllProducts();
+    req.session.ActualUrl = req.path;
+
     res.render('home', {
         isUserAuthenticated: req.session.userAuthenticated,
         allProduct: products,
         user: req.session.idUser
     });
-    
-
 })
 
 Router.get('/login', AuthenticationError, (req, res) => {
@@ -44,11 +43,21 @@ Router.get('/register', (req, res) => {
     res.render('register');
 })
 
-Router.get('/product/:id', (req,res)=>{
-    console.log(req.params);
+Router.get('/product/:id', isUserAuthenticated, (req, res) => {
 
-    res.send('I am product '+ req.params.id);
+    db.getProduct(req.params.id).then(obj => {
+        console.log(obj);
+        res.render('product', { 
+            product: obj[0],
+            isUserAuthenticated: req.session.userAuthenticated,
+            user: req.session.idUser
+
+         })
+    })
+    req.session.ActualUrl = req.path;
 })
+
+
 
 // ALL POST METHODS
 Router.post('/register', async (req, res) => {
@@ -74,14 +83,16 @@ Router.post('/login', async (req, res) => {
         else {
             req.session.userAuthenticated = true;
             req.session.idUser = obj[0].id;
-            res.redirect('/')
+            res.redirect(req.session.ActualUrl);
         }
     });
 })
 
 Router.post('/logout', (req, res) => {
+
     req.session.userAuthenticated = false;
-    res.redirect('/');
+    req.session.idUser =undefined;
+    res.redirect(req.session.ActualUrl);
 })
 
 module.exports.Router = Router;
