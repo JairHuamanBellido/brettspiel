@@ -23,10 +23,7 @@ isUserAuthenticated = (req, res, next) => {
 
 Router.get('/', isUserAuthenticated, async(req, res) => {
     const products =  await db.getAllProducts();
-  
-    // DEBUG
-    // console.log(req.session.idUser);
-
+ 
     res.render('home', {
         isUserAuthenticated: req.session.userAuthenticated,
         allProduct: products,

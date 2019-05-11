@@ -10,29 +10,14 @@
 
 <body>
 
-
-    <% if(!isUserAuthenticated){%>
-    <form action="/login" method="GET">
-        <input type="submit" value="Ir al login">
-
-    </form>
-
-    <form action="/register" method="GET">
-        <input type="submit" value="Ir a registro">
-    </form>
-    <% } else{ %>
-    <form action="/logout" method="POST">
-        <input type="submit" value="Salir de la cuenta">
-    </form>
-    <% } %>
-    <% if( typeof user !=='undefined'){ %>
-    <p><%= user %></p>
-    <% } %>
+    <%- include('partials/header'); %>
     <div class="allProducts">
 
         <% allProduct.forEach(obj=>{ %>
-        <h2><%= obj.name %></h2>
-        <p><%= obj.description %></p>
+        <a href="http://localhost:3000/product/<%=obj.id%>">
+            <h2><%= obj.name %></h2>
+            <p><%= obj.description %></p>
+        </a>
         <% }); %>
 
     </div>

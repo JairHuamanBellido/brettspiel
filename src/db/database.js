@@ -32,3 +32,10 @@ module.exports.getAllProducts = async()=>{
     const res =  await pool.query(query);
     return res.rows;
 }
+
+// GET A PRODUCT
+module.exports.getProduct = async(id)=>{
+    const query  = `SELECT * FROM  ${process.env.PRODUCT_TABLE} WHERE id=${id}`;
+    const res = await pool.query(query);
+    return res.rows;
+}
