@@ -1,0 +1,33 @@
+.allProducts{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-flow: row wrap;
+}
+
+.product-item{
+    width: 200px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #eee;
+    border: 4px;
+    margin: 16px;
+    text-decoration: none;
+    color: #323c52;
+}
+.product-item h2,.product-item p {
+    color: inherit;
+}
+.product-item p{
+    opacity: .67;
+}
+.product-item:hover{
+    background: #3478fa;
+    transition: all .1s ease-in-out;
+    box-shadow: -6px 6px 12px 1px rgba(0,0,0,.1);
+
+    color: #fff;
+}
