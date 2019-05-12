@@ -1,22 +1,27 @@
+<link rel="stylesheet" href="/public/css/header.css">
 <header>
 
 
-    <a href="http://localhost:3000/">Home</a>
-    <% if(!isUserAuthenticated){%>
-    <form action="/login" method="GET">
-        <input type="submit" value="Ir al login">
+    <a id="logo" href="http://localhost:3000/">Home</a>
 
-    </form>
+    <div class="form-header">
 
-    <form action="/register" method="GET">
-        <input type="submit" value="Ir a registro">
-    </form>
-    <% } else{ %>
-    <p><%= user %></p>
-    <form action="/logout" method="POST">
-        <input type="submit" value="Salir de la cuenta">
-    </form>
-    <% } %>
+        <% if(!isUserAuthenticated){%>
+        <form action="/login" method="GET">
+            <input id="Login-btn" type="submit" value="Login">
+
+        </form>
+
+        <form  action="/register" method="GET">
+            <input id="Register-btn" type="submit" value="Ir a registro">
+        </form>
+        <% } else{ %>
+        <p><%= user %></p>
+        <form action="/logout" method="POST">
+            <input type="submit" value="Salir de la cuenta">
+        </form>
+        <% } %>
+    </div>
 
 
 

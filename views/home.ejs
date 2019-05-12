@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
+    <link rel="stylesheet" href="/public/css/home.css">
 </head>
 
 <body>
@@ -14,9 +15,9 @@
     <div class="allProducts">
 
         <% allProduct.forEach(obj=>{ %>
-        <a href="http://localhost:3000/product/<%=obj.id%>">
+        <a class="product-item" href="http://localhost:3000/product/<%=obj.id%>">
             <h2><%= obj.name %></h2>
-            <p><%= obj.description %></p>
+            <p><%= obj.tipe %></p>
         </a>
         <% }); %>
 
