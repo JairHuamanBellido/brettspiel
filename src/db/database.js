@@ -28,7 +28,7 @@ module.exports.validationLogin = async(username,password)=>{
 
 // SHARE ALL PRODUCTS
 module.exports.getAllProducts = async()=>{
-    const query = `SELECT * FROM ${process.env.PRODUCT_TABLE} LIMIT 10`;
+    const query = `SELECT * FROM ${process.env.PRODUCT_TABLE} LIMIT 20`;
     const res =  await pool.query(query);
     return res.rows;
 }
