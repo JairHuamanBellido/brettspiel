@@ -22,12 +22,14 @@ header{
     display: flex;
     justify-content: flex-end;
 }
-.form-header form{
-    margin: 0 12px;
-}
+
 
 #Login-btn, #Register-btn{
     cursor: pointer;
+}
+
+#Login-btn, #Register-btn{
+    margin: 0 1em;
 }
 #Login-btn{
     background: #8796E1;
