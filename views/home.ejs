@@ -10,7 +10,9 @@
 </head>
 
 <body>
-
+    <% if(!isUserAuthenticated) {%>
+    <%- include('modals/login',{error:error,message:message}) %>
+    <%}%>
     <%- include('partials/header'); %>
     <div class="allProducts">
 

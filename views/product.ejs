@@ -1,15 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Brettspiel</title>
+    <link rel="stylesheet" href="/public/css/product.css">
 </head>
+
 <body>
     <%- include('partials/header') %>
+    <% if(!isUserAuthenticated) {%>
+    <%- include('modals/login',{error:error,message:message}) %>
+    <%}%>
+    <div class="product-container">
+        <div class="all-about-product">
+            <h1> <%= product.name %></h1>
+    <p><%= product.tipe %></p>
+    <br>
+    <br>
+    <p><%= product.description %>
+        <%= product.description %>
+        <%= product.description %>
+        <%= product.description %>
+        <%= product.description %>
+        <%= product.description %>
+        <%= product.description %>
+    </p>
 
-    <h1><%= product.name %></h1>
-    <p><%= product.description %></p>
+    </div>
+
+    <div class="product-form">
+        <div class="card-product-form">
+            <div class="first-display-card">
+                <h1> <sup>S/</sup><%= product.price%></h1>
+                <p>Costo de alquiler por dia</p>
+                <div class="fiel-dateRent">
+                    <div class="field-recogida">
+                        <label for="">Fecha de recogida</label><br>
+                        <input type="date" placeholder="Ingrese la fecha de recogida">
+                    </div>
+                    <div class="field-entrega">
+                        <label for="">Fecha de Entrega</label><br>
+                        <input type="date" placeholder="Ingrese la fecha de entrega">
+                    </div>
+                </div>
+                <div class="snacks-container-card">
+                    <button>Desea agregar Snacks</button>
+                </div>
+                <div class="field-quantityProducts">
+                    <label for="">Cantidad de productos</label>
+                    <input type="number">
+                </div>
+                <div class="bill-card">
+                    <h1>Boleta</h1>
+                    <div class="result-Snacks">
+                        <p>Snacks</p>
+                        <p>S/ 0.00</p>
+                    </div>
+                    <div class="result-rent">
+                        <p>Total de alquiler</p>
+                        <p>S/ 49.95</p>
+                    </div>
+                </div>
+                <button onclick="buy()">Comprar</button>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
 </body>
+
 </html>
