@@ -3,23 +3,21 @@
 
 
     <a id="logo" href="http://localhost:3000/">Home</a>
-
+    <input type="text" placeholder="Buscas algun producto">
     <div class="form-header">
 
-        <% if(!isUserAuthenticated){%>
-        <form action="/login" method="GET">
+        <% if(!isUserAuthenticated || isUserAuthenticated==undefined){%>
+        <button id="Login-btn" onclick="buy()">Login</button>
+        <!-- <form action="/login" method="GET">
             <input id="Login-btn" type="submit" value="Login">
 
-        </form>
-
+        </form> -->
+        
         <form  action="/register" method="GET">
             <input id="Register-btn" type="submit" value="Ir a registro">
         </form>
         <% } else{ %>
-        <p><%= user %></p>
-        <form action="/logout" method="POST">
-            <input type="submit" value="Salir de la cuenta">
-        </form>
+            <%- include('../component/userHeader',{user:user}) %>
         <% } %>
     </div>
 
