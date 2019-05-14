@@ -12,10 +12,10 @@ const pool = new Pool({
 // REGISTER A NEW CLIENT
 module.exports.insertNewClient = async (firstName, lastName, email, username, password) => {
 
-    const allUser = await pool.query('SELECT * FROM client');
-    const values = [firstName, lastName, email, username, password, 1, allUser.rows.length +1];
-    console.log(allUser.rows.length + 1);
-    await pool.query(`INSERT INTO ${process.env.CART_TABLE}(name) VALUES($1)`, [username]).then(async () => {
+    const lastCartNumber  = await pool.query('SELECT last_Value FROM cart_id_seq');    
+    const values = [firstName, lastName, email, username, password, 1, parseInt(lastCartNumber.rows[0].last_value) + 1];
+    
+    await pool.query(`INSERT INTO ${process.env.CART_TABLE}(name) VALUES($1)`, [username+'cart']).then(async () => {
         console.log('Creando carrito');        
         const text = `INSERT INTO ${process.env.CLIENT_TABLE}(first_name,last_name,email,username,password,membership,cart) VALUES ($1,$2,$3,$4,$5,$6,$7)`;
         await pool.query(text, values).then( ()=>{
