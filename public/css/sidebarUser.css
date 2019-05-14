@@ -1,0 +1,9 @@
+.user-sidebar{
+    width: 30%;
+    background: #eee;
+    display: flex;
+    flex-direction: column;
+}
+.user-sidebar a{
+    color: #444;
+}

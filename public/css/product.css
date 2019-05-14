@@ -1,0 +1,24 @@
+.product-container{
+    width: 100vw;
+    display: flex;
+    position: relative;
+}
+
+.all-about-product{
+    margin: 2em 2em 2em 5em;
+   
+}
+.all-about-product{
+    width: 70%;
+}
+.product-form{
+    width: 30%;
+    padding: 48px 32px;
+    
+}
+.card-product-form{
+    width: 400px;
+    height: 720px;
+    padding: 48px 32px;
+    box-shadow: 0 0 6px 0px rgba(0,0,0,.1);
+}

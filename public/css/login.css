@@ -1,0 +1,22 @@
+#modal-login{
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.37);
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+}
+#modal-card-login{
+    background: #fff;
+    border-radius: 9px;
+    width: 40%;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
