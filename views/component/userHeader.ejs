@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/public/css/user-header.css">
+<div class="user-header-container">
+    <p><%= user.first_name %></p>
+
+    <button onclick="show()">T</button>
+    <div id="user-options">
+
+
+        <a href="http://localhost:3000/Perfil">Perfil</a>
+        <a href="http://localhost:3000/MisBoletas">Boletas</a>
+        <a href="http://localhost:3000/JuegosFavoritos">Juegos Favoritos</a>
+        <a href="http://localhost:3000/Carrito">Mi carrito</a>
+
+        <form action="/logout" method="POST">
+            <input type="submit" value="Salir de la cuenta">
+        </form>
+    </div>
+
+</div>
+
+<script src="/public/js/userHeader.js"></script>
