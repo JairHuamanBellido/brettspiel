@@ -21,17 +21,24 @@ isUserAuthenticated = (req, res, next) => {
 
 // ALL GET METHODS
 
+
+// HOME PAGE
 Router.get('/', isUserAuthenticated, async (req, res) => {
     const products = await db.getAllProducts();
-    req.session.ActualUrl = req.path;
+    req.session.lastURL = req.path;
 
     res.render('home', {
         isUserAuthenticated: req.session.userAuthenticated,
         allProduct: products,
-        user: req.session.idUser
+        user: req.session.idUser,
+        message: req.session.errM,
+        error: req.session.errLogin
+
     });
 })
 
+
+// LOGIN PAGE
 Router.get('/login', AuthenticationError, (req, res) => {
     res.render('login', {
         message: req.session.errM,
@@ -39,31 +46,65 @@ Router.get('/login', AuthenticationError, (req, res) => {
     })
 })
 
+
+// REGISTER PAGE
 Router.get('/register', (req, res) => {
     res.render('register');
 })
 
+
+// PRODUCT PAGE
 Router.get('/product/:id', isUserAuthenticated, (req, res) => {
 
     db.getProduct(req.params.id).then(obj => {
-        console.log(obj);
-        res.render('product', { 
+        res.render('product', {
             product: obj[0],
             isUserAuthenticated: req.session.userAuthenticated,
-            user: req.session.idUser
+            user: req.session.idUser,
+            message: req.session.errM,
+            error: req.session.errLogin
 
-         })
+        })
     })
-    req.session.ActualUrl = req.path;
+    req.session.lastURL = req.path;
 })
 
+Router.get('/Perfil', async (req, res) => {
+
+
+
+    res.render('profile', {
+        user: req.session.idUser,
+
+    })
+})
+
+Router.get('/MisBoletas', (req, res) => {
+    res.render('Bills', {
+        user: req.session.idUser,
+    });
+})
+
+Router.get('/JuegosFavoritos', (req, res) => {
+    res.render('FavoriteGames', {
+        user: req.session.idUser,
+    });
+})
+
+Router.get('/Carrito', (req, res) => {
+    res.render('Cart', {
+        user: req.session.idUser,
+    });
+})
 
 
 // ALL POST METHODS
 Router.post('/register', async (req, res) => {
 
-    const { first_name, last_name, user_name, password } = req.body;
-    await db.insertNewClient(first_name, last_name, user_name, password);
+    const { first_name, last_name, email, user_name, password } = req.body;
+    await db.insertNewClient(first_name, last_name, email, user_name, password).then(obj => {
+        console.log('Accout create')
+    }).catch(e => { console.log(e) });
     res.redirect('/');
 
 })
@@ -78,21 +119,21 @@ Router.post('/login', async (req, res) => {
             req.session.errM = 'Invalidate Credentials';
             req.session.tryLogin = 1;
 
-            res.redirect('/login');
+
         }
         else {
             req.session.userAuthenticated = true;
-            req.session.idUser = obj[0].id;
-            res.redirect(req.session.ActualUrl);
+            req.session.idUser = obj[0];
         }
+        res.redirect(req.session.lastURL);
     });
 })
 
 Router.post('/logout', (req, res) => {
 
     req.session.userAuthenticated = false;
-    req.session.idUser =undefined;
-    res.redirect(req.session.ActualUrl);
+    req.session.idUser = undefined;
+    res.redirect(req.session.lastURL);
 })
 
 module.exports.Router = Router;
