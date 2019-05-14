@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="/public/css/login.css">
+<div id="modal-login">
+    <div id="modal-card-login">
+        <button onclick="document.getElementById('modal-login').style.display='none';">X</button>
+        <h1>Iniciar Sesion</h1>
+        <div class="line"></div>
+        <p>Los mejores juegos en un solo sitio</p>
+        <form action="/login" method="POST" id="login-form">
+            <input type="text" autofocus name="username" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+            <input type="submit" value="Ingresar">
+        </form>
+        <% if(error){ %>
+        <p style="color:red;"><%= message %></p>
+        <% } %>
+
+    </div>
+</div>
+
+<script src="/public/js/productPage.js"></script>
