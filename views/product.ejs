@@ -28,8 +28,10 @@
         <%= product.description %>
         <%= product.description %>
     </p>
-
-    </div>
+        <form action="/addToCart" method="POST">
+            <input type="submit" value="Añadir al carro">
+        </form>
+    </div>  
 
     <div class="product-form">
         <div class="card-product-form">

@@ -45,3 +45,20 @@ module.exports.getProduct = async (id) => {
     const res = await pool.query(query);
     return res.rows;
 }
+
+
+// ADD PRODUCT TO CART 
+module.exports.addProductToCart = async(idProduct,idCart) =>{
+    const values =  [idCart,idProduct];
+    const query = `INSERT INTO ${process.env.PRODUCT_CART_TABLE} (cart_id,product_id) VALUES ($1,$2)`;
+    await pool.query(query,values)
+    .then( ()=>{
+        console.log("Añadido al carrito");
+    })
+    .catch(
+        e=>{
+            console.error("Algo paso mal! ");
+            console.log(e)
+        }
+    );
+}

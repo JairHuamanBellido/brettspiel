@@ -56,6 +56,10 @@ Router.get('/register', (req, res) => {
 // PRODUCT PAGE
 Router.get('/product/:id', isUserAuthenticated, (req, res) => {
 
+
+
+    req.session.product = req.params.id;
+    console.log(req.session.product);
     db.getProduct(req.params.id).then(obj => {
         res.render('product', {
             product: obj[0],
@@ -98,6 +102,9 @@ Router.get('/Carrito', (req, res) => {
 })
 
 
+
+
+
 // ALL POST METHODS
 Router.post('/register', async (req, res) => {
 
@@ -105,7 +112,7 @@ Router.post('/register', async (req, res) => {
     await db.insertNewClient(first_name, last_name, email, user_name, password).then(obj => {
         console.log('Accout create')
     }).catch(e => { console.log(e) });
-    res.redirect('/');
+    res.redirect(req.session.lastURL);
 
 })
 
@@ -136,4 +143,12 @@ Router.post('/logout', (req, res) => {
     res.redirect(req.session.lastURL);
 })
 
+Router.post('/addToCart', async(req,res)=>{
+    console.log("Añadido al carro");
+    console.log("Product: "+  req.session.product );
+    console.log("Cart id: "+ req.session.idUser.cart);
+
+    await db.addProductToCart(req.session.product,req.session.idUser.cart);
+    res.redirect(req.session.lastURL);
+})
 module.exports.Router = Router;
