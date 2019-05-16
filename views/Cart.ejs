@@ -13,7 +13,18 @@
     <%- include('partials/sidebarUser') %>
     <div class="cart-container">
         <h1>Cart</h1>
+        
+        <% products.forEach( (product)=>{ %>
+            <h3><%= product.name %></h3>
+            <p><%= product.description %></p>
+
+        <%  }); %>
+
     </div>
+
+
+
+
 </body>
 
 </html>

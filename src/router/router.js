@@ -95,9 +95,11 @@ Router.get('/JuegosFavoritos', (req, res) => {
     });
 })
 
-Router.get('/Carrito', (req, res) => {
+Router.get('/Carrito', async (req, res) => {
+
     res.render('Cart', {
         user: req.session.idUser,
+        products: await db.getProductFromCart(req.session.idUser.id)
     });
 })
 
@@ -143,12 +145,12 @@ Router.post('/logout', (req, res) => {
     res.redirect(req.session.lastURL);
 })
 
-Router.post('/addToCart', async(req,res)=>{
+Router.post('/addToCart', async (req, res) => {
     console.log("Añadido al carro");
-    console.log("Product: "+  req.session.product );
-    console.log("Cart id: "+ req.session.idUser.cart);
+    console.log("Product: " + req.session.product);
+    console.log("Cart id: " + req.session.idUser.cart);
 
-    await db.addProductToCart(req.session.product,req.session.idUser.cart);
+    await db.addProductToCart(req.session.product, req.session.idUser.cart);
     res.redirect(req.session.lastURL);
 })
 module.exports.Router = Router;

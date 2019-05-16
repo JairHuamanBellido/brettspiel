@@ -12,15 +12,15 @@ const pool = new Pool({
 // REGISTER A NEW CLIENT
 module.exports.insertNewClient = async (firstName, lastName, email, username, password) => {
 
-    const lastCartNumber  = await pool.query('SELECT last_Value FROM cart_id_seq');    
+    const lastCartNumber = await pool.query('SELECT last_Value FROM cart_id_seq');
     const values = [firstName, lastName, email, username, password, 1, parseInt(lastCartNumber.rows[0].last_value) + 1];
-    
-    await pool.query(`INSERT INTO ${process.env.CART_TABLE}(name) VALUES($1)`, [username+'cart']).then(async () => {
-        console.log('Creando carrito');        
+
+    await pool.query(`INSERT INTO ${process.env.CART_TABLE}(name) VALUES($1)`, [username + 'cart']).then(async () => {
+        console.log('Creando carrito');
         const text = `INSERT INTO ${process.env.CLIENT_TABLE}(first_name,last_name,email,username,password,membership,cart) VALUES ($1,$2,$3,$4,$5,$6,$7)`;
-        await pool.query(text, values).then( ()=>{
+        await pool.query(text, values).then(() => {
             console.log('Valores insertados');
-        });        
+        });
     });
 }
 
@@ -48,17 +48,42 @@ module.exports.getProduct = async (id) => {
 
 
 // ADD PRODUCT TO CART 
-module.exports.addProductToCart = async(idProduct,idCart) =>{
-    const values =  [idCart,idProduct];
+module.exports.addProductToCart = async (idProduct, idCart) => {
+    const values = [idCart, idProduct];
     const query = `INSERT INTO ${process.env.PRODUCT_CART_TABLE} (cart_id,product_id) VALUES ($1,$2)`;
-    await pool.query(query,values)
-    .then( ()=>{
-        console.log("Añadido al carrito");
+    await pool.query(query, values)
+        .then(() => {
+            console.log("Añadido al carrito");
+        })
+        .catch(
+            e => {
+                console.error("Algo paso mal! ");
+                console.log(e)
+            }
+        );
+}
+
+module.exports.getProductFromCart = async (idUser) => {
+    const res = await pool.query(`SELECT product_id FROM ${process.env.PRODUCT_CART_TABLE} WHERE cart_id = ${idUser}`)
+    .then(ojb => {
+        return ojb.rows;
     })
-    .catch(
-        e=>{
-            console.error("Algo paso mal! ");
-            console.log(e)
-        }
-    );
+    .then( async(obj) => {
+        const idProducts = obj.reduce((prev, current) => {
+
+            if (prev != '') {
+                current.product_id += (',' + prev);
+            }
+            else{
+                current.product_id += (prev);
+            }
+
+            return current.product_id;
+
+        }, '')
+
+        return await pool.query(`SELECT * from product WHERE id IN(${idProducts})`);
+    })
+    console.log(res.rows);
+    return res.rows;
 }
