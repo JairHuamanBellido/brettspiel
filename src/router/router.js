@@ -48,19 +48,21 @@ Router.get('/register', (req, res) => {
 
 
 // PRODUCT PAGE
-Router.get('/product/:id', isUserAuthenticated, (req, res) => {
+Router.get('/product/:id', isUserAuthenticated, async(req, res) => {
 
 
 
     req.session.product = req.params.id;
-    console.log(req.session.product);
-    db.getProduct(req.params.id).then(obj => {
+    console.log(await db.isProductInCart(req.session.idUser.id,req.session.product))
+    db.getProduct(req.params.id).then( async(obj) => {
         res.render('product', {
             product: obj[0],
             isUserAuthenticated: req.session.userAuthenticated,
             user: req.session.idUser,
             message: req.session.errM,
-            error: req.session.errLogin
+            error: req.session.errLogin,
+            isProductInCart:  await db.isProductInCart(req.session.idUser.id,req.session.product)
+
 
         })
     })
