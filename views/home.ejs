@@ -16,10 +16,10 @@
     <%- include('partials/header'); %>
     <div class="allProducts">
 
-        <% allProduct.forEach(obj=>{ %>
-        <a class="product-item" href="http://localhost:3000/product/<%=obj.id%>">
-            <h2><%= obj.name %></h2>
-            <p><%= obj.tipe %></p>
+        <% allProduct.forEach(product=>{ %>
+        <a class="product-item" href="http://localhost:3000/product/<%=product.id%>">
+            <h2><%= product.name %></h2>
+            <p><%= product.tipe %></p>
         </a>
         <% }); %>
 
