@@ -38,13 +38,7 @@ Router.get('/', isUserAuthenticated, async (req, res) => {
 })
 
 
-// LOGIN PAGE
-// Router.get('/login', AuthenticationError, (req, res) => {
-//     res.render('login', {
-//         message: req.session.errM,
-//         error: req.session.errLogin
-//     })
-// })
+
 
 
 // REGISTER PAGE
@@ -74,8 +68,6 @@ Router.get('/product/:id', isUserAuthenticated, (req, res) => {
 })
 
 Router.get('/Perfil', async (req, res) => {
-
-
 
     res.render('profile', {
         user: req.session.idUser,
