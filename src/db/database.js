@@ -65,25 +65,32 @@ module.exports.addProductToCart = async (idProduct, idCart) => {
 
 module.exports.getProductFromCart = async (idUser) => {
     const res = await pool.query(`SELECT product_id FROM ${process.env.PRODUCT_CART_TABLE} WHERE cart_id = ${idUser}`)
-    .then(ojb => {
-        return ojb.rows;
-    })
-    .then( async(obj) => {
-        const idProducts = obj.reduce((prev, current) => {
+        .then(ojb => {
+            return ojb.rows;
+        })
+        .then(async (obj) => {
+            const idProducts = obj.reduce((prev, current) => {
 
-            if (prev != '') {
-                current.product_id += (',' + prev);
-            }
-            else{
-                current.product_id += (prev);
-            }
+                if (prev != '') {
+                    current.product_id += (',' + prev);
+                }
+                else {
+                    current.product_id += (prev);
+                }
 
-            return current.product_id;
+                return current.product_id;
 
-        }, '')
+            }, '')
 
-        return await pool.query(`SELECT * from product WHERE id IN(${idProducts})`);
-    })
+            return await pool.query(`SELECT * from product WHERE id IN(${idProducts})`);
+        })
     console.log(res.rows);
     return res.rows;
+}
+
+module.exports.isProductInCart = async (idCart, idProduct) => {
+    const result = await pool.query(`SELECT * FROM ${process.env.PRODUCT_CART_TABLE} WHERE cart_id = ${idCart} AND product_id = ${idProduct} `);
+
+    return (result.rows.length > 0) ? true : false;
+
 }
