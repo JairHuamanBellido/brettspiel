@@ -106,3 +106,9 @@ module.exports.addNewFavoriteList = async(name,id)=>{
         console.log(e);
     })
 }
+
+// CONSULTA TODAS LAS LISTA DE JUEGOS FAVORITES DEL CLIENTE
+module.exports.getAllFavoriteList = async(id)=>{
+    const result =  await pool.query(`SELECT * FROM ${process.env.LISTFAVORITEGAME_TABLE} WHERE client_id = ${id}`);
+    return result.rows;
+}
