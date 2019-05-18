@@ -11,68 +11,79 @@
 
 <body>
     <%- include('partials/header') %>
-    <% if(!isUserAuthenticated) {%>
+
+    <% if(!isUserAuthenticated ||  isUserAuthenticated == undefined) {%>
     <%- include('modals/login',{error:error,message:message}) %>
-    <%}%>
+    <%} else { %>
+    <%- include('modals/favoriteGamesList',{list:listFavoriteGame}) %>
+
+    <% } %>
+
     <div class="product-container">
         <div class="all-about-product">
             <h1> <%= product.name %></h1>
-    <p><%= product.tipe %></p>
-    <br>
-    <br>
-    <p><%= product.description %>
-        <%= product.description %>
-        <%= product.description %>
-        <%= product.description %>
-        <%= product.description %>
-        <%= product.description %>
-        <%= product.description %>
-    </p>
-    <% if(!isProductInCart){ %>
-    <form action="/addToCart" method="POST">
-        <input type="submit" value="Añadir al carro">
-    </form>
-    <% } %>
-    </div>
+            <p><%= product.tipe %></p>
+            <br>
+            <br>
+            <p><%= product.description %>
+                <%= product.description %>
+                <%= product.description %>
+                <%= product.description %>
+                <%= product.description %>
+                <%= product.description %>
+                <%= product.description %>
+            </p>
+            <% if(!isUserAuthenticated){ %>
+            <button onclick="buy()">Añadir al carro</button>
+            <% } if( (isProductInCart == undefined || isProductInCart != true) && isUserAuthenticated ){ %>
 
-    <div class="product-form">
-        <div class="card-product-form">
-            <div class="first-display-card">
-                <h1> <sup>S/</sup><%= product.price%></h1>
-                <p>Costo de alquiler por dia</p>
-                <div class="fiel-dateRent">
-                    <div class="field-recogida">
-                        <label for="">Fecha de recogida</label><br>
-                        <input type="date" placeholder="Ingrese la fecha de recogida">
-                    </div>
-                    <div class="field-entrega">
-                        <label for="">Fecha de Entrega</label><br>
-                        <input type="date" placeholder="Ingrese la fecha de entrega">
-                    </div>
-                </div>
-                <div class="snacks-container-card">
-                    <button>Desea agregar Snacks</button>
-                </div>
-                <div class="field-quantityProducts">
-                    <label for="">Cantidad de productos</label>
-                    <input type="number">
-                </div>
-                <div class="bill-card">
-                    <h1>Boleta</h1>
-                    <div class="result-Snacks">
-                        <p>Snacks</p>
-                        <p>S/ 0.00</p>
-                    </div>
-                    <div class="result-rent">
-                        <p>Total de alquiler</p>
-                        <p>S/ 49.95</p>
-                    </div>
-                </div>
-                <button onclick="buy()">Comprar</button>
-            </div>
+
+            <form action="/addToCart" method="POST">
+                <input type="submit" value="Añadir al carro">
+            </form>
+            <% } if(isProductInCart == true){%>
+            <button>Ya comprado</button>
+            <% } %>
         </div>
 
-    </div>
+        <div class="product-form">
+            <div class="card-product-form">
+                <div class="first-display-card">
+                    <h1> <sup>S/</sup><%= product.price%></h1>
+                    <p>Costo de alquiler por dia</p>
+                    <div class="fiel-dateRent">
+                        <div class="field-recogida">
+                            <label for="">Fecha de recogida</label><br>
+                            <input type="date" placeholder="Ingrese la fecha de recogida">
+                        </div>
+                        <div class="field-entrega">
+                            <label for="">Fecha de Entrega</label><br>
+                            <input type="date" placeholder="Ingrese la fecha de entrega">
+                        </div>
+                    </div>
+                    <div class="snacks-container-card">
+                        <button>Desea agregar Snacks</button>
+                    </div>
+                    <div class="field-quantityProducts">
+                        <label for="">Cantidad de productos</label>
+                        <input type="number">
+                    </div>
+                    <div class="bill-card">
+                        <h1>Boleta</h1>
+                        <div class="result-Snacks">
+                            <p>Snacks</p>
+                            <p>S/ 0.00</p>
+                        </div>
+                        <div class="result-rent">
+                            <p>Total de alquiler</p>
+                            <p>S/ 49.95</p>
+                        </div>
+                    </div>
+                    <button onclick="buy()">Comprar</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 
