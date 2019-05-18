@@ -13,7 +13,15 @@
 
     <%- include('partials/sidebarUser') %>
     <div class="favoriteGames-container">
+        <form action="/addNewListGame" method="POST">
+            <input type="text" name="favoriteList" placeholder="Ingrese la lista de juego">
+            <input type="submit" value="Agregar">
+
+        </form>
+        
         <h1>Favorites Games</h1>
+        
+
     </div>
 
 </body>
