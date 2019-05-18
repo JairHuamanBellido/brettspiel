@@ -64,27 +64,35 @@ module.exports.addProductToCart = async (idProduct, idCart) => {
 }
 
 module.exports.getProductFromCart = async (idUser) => {
+
     const res = await pool.query(`SELECT product_id FROM ${process.env.PRODUCT_CART_TABLE} WHERE cart_id = ${idUser}`)
         .then(ojb => {
             return ojb.rows;
         })
         .then(async (obj) => {
-            const idProducts = obj.reduce((prev, current) => {
 
-                if (prev != '') {
-                    current.product_id += (',' + prev);
-                }
-                else {
-                    current.product_id += (prev);
-                }
+            if (obj.length > 0) {
+                const idProducts = obj.reduce((prev, current) => {
 
-                return current.product_id;
+                    if (prev != '') {
+                        current.product_id += (',' + prev);
+                    }
+                    else {
+                        current.product_id += (prev);
+                    }
 
-            }, '')
+                    return current.product_id;
 
-            return await pool.query(`SELECT * from product WHERE id IN(${idProducts})`);
+                }, '')
+
+
+                return await pool.query(`SELECT * from product WHERE id IN(${idProducts})`);
+            }
+            else {
+                return { rows: [] };
+            }
         })
-    console.log(res.rows);
+
     return res.rows;
 }
 
@@ -97,18 +105,31 @@ module.exports.isProductInCart = async (idCart, idProduct) => {
 }
 
 // AGREGAR UNA NUEVA LISTA DE JUEGOS FAVORITOS
-module.exports.addNewFavoriteList = async(name,id)=>{
-    const data = [name,id];
-    const query =  `INSERT INTO ${process.env.LISTFAVORITEGAME_TABLE}(name,client_id) VALUES ($1,$2)`;
-    await pool.query(query,data).then( ()=>{
+module.exports.addNewFavoriteList = async (name, id) => {
+    const data = [name, id];
+    const query = `INSERT INTO ${process.env.LISTFAVORITEGAME_TABLE}(name,client_id) VALUES ($1,$2)`;
+    await pool.query(query, data).then(() => {
         console.log("Lista de juegos creada con exito en la bd");
-    }).catch( e =>{
+    }).catch(e => {
         console.log(e);
     })
 }
 
 // CONSULTA TODAS LAS LISTA DE JUEGOS FAVORITES DEL CLIENTE
-module.exports.getAllFavoriteList = async(id)=>{
-    const result =  await pool.query(`SELECT * FROM ${process.env.LISTFAVORITEGAME_TABLE} WHERE client_id = ${id}`);
+module.exports.getAllFavoriteList = async (id) => {
+    const result = await pool.query(`SELECT * FROM ${process.env.LISTFAVORITEGAME_TABLE} WHERE client_id = ${id}`);
     return result.rows;
+}
+
+
+// ELIMINAR UN PRODUCTO DEL CARRITO
+
+module.exports.removeProductFromCart = async (cart_id, product_id) => {
+
+    const query = `DELETE FROM ${process.env.PRODUCT_CART_TABLE} WHERE cart_id =${cart_id} AND product_id =${product_id}`;
+    await pool.query(query).then(() => {
+        console.log("Se removio el producto del carrito desde la base de datos");
+    });
+
+
 }

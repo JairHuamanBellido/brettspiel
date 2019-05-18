@@ -110,7 +110,6 @@ Router.get('/JuegosFavoritos', async (req, res) => {
 
 Router.get('/Carrito', async (req, res) => {
     req.session.lastURL = req.path;
-    
     res.render('Cart', {
         user: req.session.idUser,
         products: await db.getProductFromCart(req.session.idUser.id)
@@ -156,7 +155,7 @@ Router.post('/logout', (req, res) => {
 
     req.session.userAuthenticated = false;
     req.session.idUser = undefined;
-    res.redirect(req.session.lastURL);
+    res.redirect('/');
 })
 
 Router.post('/addToCart', async (req, res) => {
@@ -176,5 +175,12 @@ Router.post('/addNewListGame', async (req, res) => {
 
     res.redirect(req.session.lastURL);
 })
+Router.post('/carrito/delete/:idProduct/:idCart',async (req,res)=>{
+    
+    const {idProduct,idCart} = req.params;
+    await db.removeProductFromCart(idCart,idProduct).then( ()=>{
+        res.redirect(req.session.lastURL);
 
+    });
+})
 module.exports.Router = Router;
