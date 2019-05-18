@@ -86,11 +86,12 @@ Router.get('/MisBoletas', (req, res) => {
     });
 })
 
-Router.get('/JuegosFavoritos', (req, res) => {
+Router.get('/JuegosFavoritos',async (req, res) => {
     req.session.lastURL = req.path;
-
+    
     res.render('FavoriteGames', {
         user: req.session.idUser,
+        allProducts: await db.getAllFavoriteList(req.session.idUser.id)
     });
 })
 
