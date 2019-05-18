@@ -88,9 +88,21 @@ module.exports.getProductFromCart = async (idUser) => {
     return res.rows;
 }
 
+// VERIFICA SI EL PRODUCTO ESTUVO EN EL CARRO
 module.exports.isProductInCart = async (idCart, idProduct) => {
     const result = await pool.query(`SELECT * FROM ${process.env.PRODUCT_CART_TABLE} WHERE cart_id = ${idCart} AND product_id = ${idProduct} `);
 
     return (result.rows.length > 0) ? true : false;
 
+}
+
+// AGREGAR UNA NUEVA LISTA DE JUEGOS FAVORITOS
+module.exports.addNewFavoriteList = async(name,id)=>{
+    const data = [name,id];
+    const query =  `INSERT INTO ${process.env.LISTFAVORITEGAME_TABLE}(name,client_id) VALUES ($1,$2)`;
+    await pool.query(query,data).then( ()=>{
+        console.log("Lista de juegos creada con exito en la bd");
+    }).catch( e =>{
+        console.log(e);
+    })
 }
