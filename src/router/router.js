@@ -70,6 +70,7 @@ Router.get('/product/:id', isUserAuthenticated, async(req, res) => {
 })
 
 Router.get('/Perfil', async (req, res) => {
+    req.session.lastURL = req.path;
 
     res.render('profile', {
         user: req.session.idUser,
@@ -78,18 +79,23 @@ Router.get('/Perfil', async (req, res) => {
 })
 
 Router.get('/MisBoletas', (req, res) => {
+    req.session.lastURL = req.path;
+
     res.render('Bills', {
         user: req.session.idUser,
     });
 })
 
 Router.get('/JuegosFavoritos', (req, res) => {
+    req.session.lastURL = req.path;
+
     res.render('FavoriteGames', {
         user: req.session.idUser,
     });
 })
 
 Router.get('/Carrito', async (req, res) => {
+    req.session.lastURL = req.path;
 
     res.render('Cart', {
         user: req.session.idUser,
@@ -147,4 +153,14 @@ Router.post('/addToCart', async (req, res) => {
     await db.addProductToCart(req.session.product, req.session.idUser.cart);
     res.redirect(req.session.lastURL);
 })
+
+Router.post('/addNewListGame', async(req,res)=>{
+    const {favoriteList} =  req.body;
+
+    db.addNewFavoriteList(favoriteList,req.session.idUser.id);
+    
+
+    res.redirect(req.session.lastURL);
+})
+
 module.exports.Router = Router;
