@@ -110,7 +110,7 @@ Router.get('/JuegosFavoritos', async (req, res) => {
 
 Router.get('/Carrito', async (req, res) => {
     req.session.lastURL = req.path;
-    on
+    
     res.render('Cart', {
         user: req.session.idUser,
         products: await db.getProductFromCart(req.session.idUser.id)
