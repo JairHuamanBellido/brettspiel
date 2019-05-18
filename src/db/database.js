@@ -133,3 +133,13 @@ module.exports.removeProductFromCart = async (cart_id, product_id) => {
 
 
 }
+
+// ELIMINAR UN LISTA DE JUEGOS FAVORITOS
+module.exports.removeListFavoriteGames = async (idListGame) => {
+    const query = `DELETE FROM ${process.env.LISTFAVORITEGAME_TABLE} WHERE id = ${idListGame}`;
+    await pool.query(query).then(() => {
+        console.log("La lista de juego fue eliminada");
+    })
+
+
+}

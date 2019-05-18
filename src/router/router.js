@@ -55,30 +55,30 @@ Router.get('/product/:id', isUserAuthenticated, async (req, res) => {
     req.session.product = req.params.id;
     db.getProduct(req.params.id).then(async (obj) => {
 
-        
+
         if (req.session.userAuthenticated == false) {
             res.render('product', {
                 product: obj[0],
-                isUserAuthenticated: false,                
+                isUserAuthenticated: false,
                 message: req.session.errM,
                 error: req.session.errLogin,
                 isProductInCart: false
-                
+
             })
         }
-        else{
-            
+        else {
+
             res.render('product', {
                 product: obj[0],
                 isUserAuthenticated: true,
-                user: req.session.idUser,                
-                isProductInCart: await db.isProductInCart(req.session.idUser.id,req.params.id),
-                listFavoriteGame:await db.getAllFavoriteList(req.session.idUser.id)
+                user: req.session.idUser,
+                isProductInCart: await db.isProductInCart(req.session.idUser.id, req.params.id),
+                listFavoriteGame: await db.getAllFavoriteList(req.session.idUser.id)
 
             })
         }
     })
-    console.log('Usuario logueado: '+req.session.userAuthenticated);
+    console.log('Usuario logueado: ' + req.session.userAuthenticated);
     req.session.lastURL = req.path;
 })
 
@@ -175,12 +175,24 @@ Router.post('/addNewListGame', async (req, res) => {
 
     res.redirect(req.session.lastURL);
 })
-Router.post('/carrito/delete/:idProduct/:idCart',async (req,res)=>{
-    
-    const {idProduct,idCart} = req.params;
-    await db.removeProductFromCart(idCart,idProduct).then( ()=>{
+Router.post('/carrito/delete/:idProduct/:idCart', async (req, res) => {
+
+    const { idProduct, idCart } = req.params;
+    await db.removeProductFromCart(idCart, idProduct).then(() => {
         res.redirect(req.session.lastURL);
 
     });
 })
+
+Router.post('/JuegosFavoritos/delete/:idList', async (req, res) => {
+
+    const { idList } = req.params;
+    await db.removeListFavoriteGames(idList).then(() => {
+        res.redirect(req.session.lastURL);
+
+    })
+})
+
+
+
 module.exports.Router = Router;

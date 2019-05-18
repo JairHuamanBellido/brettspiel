@@ -33,16 +33,26 @@
                 <%= product.description %>
                 <%= product.description %>
             </p>
+
+
+            <!-- CUANDO EL USUARIO NO SE HA LOGUEADO -->
             <% if(!isUserAuthenticated){ %>
             <button onclick="buy()">Añadir al carro</button>
+
+            <!-- CUANDO EL USUARIO SE HA LOGUEADO Y NO TIENE EL PRODUCTO EN SU CARRO -->
             <% } if( (isProductInCart == undefined || isProductInCart != true) && isUserAuthenticated ){ %>
 
 
             <form action="/addToCart" method="POST">
                 <input type="submit" value="Añadir al carro">
             </form>
+
+            <!-- CUANDO EL USUARIO SE HA LOGUEADO Y TIENE EL PRODUCTO EN SU CARRO -->
             <% } if(isProductInCart == true){%>
             <button>Ya comprado</button>
+            <% }  %>
+            <% if( isUserAuthenticated){ %>   
+            <button onclick="document.getElementById('modal-favoriteGameList').style.display='flex'">Añadir a favoritos</button>
             <% } %>
         </div>
 

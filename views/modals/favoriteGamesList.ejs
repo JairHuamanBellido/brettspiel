@@ -1,11 +1,17 @@
-<div class="modal-favoriteGameList">
+<link rel="stylesheet" href="/public/css/modalFavoriteListGames.css">
+<div id="modal-favoriteGameList">
     <div class="modal-containerFavoriteGamesList">
 
-        <% list.forEach ( obj=>{ %>
-            <p><%= obj.name %></p>
+        <% list.forEach ( listGame=>{ %>
+        <p><%= listGame.name %></p>
+
+
         <% }) %>
+
+        <button onclick="document.getElementById('modal-favoriteGameList').style.display='none'">close</button>
 
     </div>
 
 
 </div>
+
