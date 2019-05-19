@@ -49,8 +49,11 @@
 
             <!-- CUANDO EL USUARIO SE HA LOGUEADO Y TIENE EL PRODUCTO EN SU CARRO -->
             <% } if(isProductInCart == true){%>
-            <button>Ya comprado</button>
-            <% }  %>
+
+                <form action="/carrito/delete/<%=product.id%>/<%= user.cart %>" method="POST">
+                    <input type="submit" value="Sacar del carrito">
+                </form>
+                <% }  %>
             <% if( isUserAuthenticated){ %>   
             <button onclick="document.getElementById('modal-favoriteGameList').style.display='flex'">Añadir a favoritos</button>
             <% } %>

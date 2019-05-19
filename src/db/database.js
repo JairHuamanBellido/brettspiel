@@ -199,17 +199,16 @@ module.exports.getProductFromAllListFavorite = async (idList) => {
 
 // CONSULTA LA TABLA DE LISTA DE JUEGOS FAVORITOS Y PRODUCTOS
 module.exports.getTableListProductByListGame = async (idlist) => {
+    
     const cpoy = [];
     idlist.forEach(obj => {
         cpoy.push(obj.id);
     })
 
     let listIdS = (cpoy.join(","));
-
     const query = `SELECT * FROM ${process.env.LISTAFAVORITEGAME_PRODUCT_TABLE} WHERE list_id IN(${listIdS})`;
     const res = await pool.query(query).catch(e => { console.log("algo paso mal aqui") });
-
-    return res.rows;
+    return  res.rows;
 }
 
 // ELIMINAR UN PRODUCTO DE UNA LISTA DE JUEGOS 
