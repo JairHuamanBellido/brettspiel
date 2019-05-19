@@ -212,3 +212,11 @@ module.exports.getTableListProductByListGame = async (idlist) => {
     return res.rows;
 }
 
+// ELIMINAR UN PRODUCTO DE UNA LISTA DE JUEGOS 
+module.exports.removeProductFromList= async(idProduct,idList)=>{
+    const query = `DELETE FROM ${process.env.LISTAFAVORITEGAME_PRODUCT_TABLE} WHERE list_id = ${idList} AND product_id = ${idProduct}`;
+    await pool.query(query).then(()=>{
+        console.log("Elemento removido de la lista de juego");
+    });
+
+}

@@ -251,6 +251,15 @@ Router.post('/product/addToFavoiteList/:idList/:idProduct', async (req, res) => 
 
 })
 
+Router.post('/JuegosFavoritos/deleteProduct/:idProduct/:idList', async(req,res)=>{
+    
+    const {idProduct, idList} = req.params;
+    await  db.removeProductFromList(idProduct,idList).then( ()=>{
 
+        res.redirect(req.session.lastURL);
+    })
+
+
+})
 
 module.exports.Router = Router;
