@@ -1,10 +1,15 @@
 <link rel="stylesheet" href="/public/css/modalFavoriteListGames.css">
 <div id="modal-favoriteGameList">
     <div class="modal-containerFavoriteGamesList">
-
+        <p>Estas viendo el product <%= product.id %></p>
         <% list.forEach ( listGame=>{ %>
-        <p><%= listGame.name %></p>
 
+            <div style="display:flex;">
+                <p><%= listGame.name %></p>
+                <form action="/product/addToFavoiteList/<%=listGame.id %>/<%=product.id%>" method="POST">
+                    <input type="submit" value="Agregar">
+                </form>
+            </div>
 
         <% }) %>
 
