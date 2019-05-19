@@ -137,6 +137,9 @@ module.exports.removeProductFromCart = async (cart_id, product_id) => {
 // ELIMINAR UN LISTA DE JUEGOS FAVORITOS
 module.exports.removeListFavoriteGames = async (idListGame) => {
     const query = `DELETE FROM ${process.env.LISTFAVORITEGAME_TABLE} WHERE id = ${idListGame}`;
+    await pool.query(`DELETE FROM ${process.env.LISTAFAVORITEGAME_PRODUCT_TABLE} WHERE list_id = ${idListGame}` ).then( ()=>{
+        console.log("Eliminados de la lista dE JUEGOS FAVORITOS VS PRODUCTOS");    
+    })
     await pool.query(query).then(() => {
         console.log("La lista de juego fue eliminada");
     })
@@ -193,6 +196,8 @@ module.exports.getProductFromAllListFavorite = async (idList) => {
         return [];
     }
 }
+
+// CONSULTA LA TABLA DE LISTA DE JUEGOS FAVORITOS Y PRODUCTOS
 module.exports.getTableListProductByListGame = async (idlist) => {
     const cpoy = [];
     idlist.forEach(obj => {
@@ -206,3 +211,4 @@ module.exports.getTableListProductByListGame = async (idlist) => {
 
     return res.rows;
 }
+

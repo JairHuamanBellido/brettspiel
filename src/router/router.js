@@ -112,7 +112,6 @@ Router.get('/JuegosFavoritos', async (req, res) => {
 
 
             const ar = await db.getTableListProductByListGame(gameList);
-            console.log(ar);
             res.render('FavoriteGames', {
                 user: req.session.idUser,
                 ListFavoriteGame: gameList,
