@@ -1,7 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 const db = require('../db/database');
-
+const ejs = require('ejs');
 
 AuthenticationError = (req, res, next) => {
     if (++req.session.tryLogin > 2) {
@@ -27,6 +27,7 @@ Router.get('/', isUserAuthenticated, async (req, res) => {
     const products = await db.getAllProducts();
     req.session.lastURL = req.path;
 
+
     res.render('home', {
         isUserAuthenticated: req.session.userAuthenticated,
         allProduct: products,
@@ -44,6 +45,7 @@ Router.get('/', isUserAuthenticated, async (req, res) => {
 // REGISTER PAGE
 Router.get('/register', (req, res) => {
     res.render('register');
+
 })
 
 
@@ -82,6 +84,7 @@ Router.get('/product/:id', isUserAuthenticated, async (req, res) => {
     req.session.lastURL = req.path;
 })
 
+// USER PAGE
 Router.get('/Perfil', async (req, res) => {
     req.session.lastURL = req.path;
 
@@ -91,6 +94,7 @@ Router.get('/Perfil', async (req, res) => {
     })
 })
 
+// BOLETAS PAGE
 Router.get('/MisBoletas', (req, res) => {
     req.session.lastURL = req.path;
 
@@ -99,15 +103,47 @@ Router.get('/MisBoletas', (req, res) => {
     });
 })
 
+// LISTA DE JUEGOS FAVORITOS PAGE
 Router.get('/JuegosFavoritos', async (req, res) => {
     req.session.lastURL = req.path;
+    await db.getAllFavoriteList(req.session.idUser.id).then(async (gameList) => {
+        
+        if (gameList.length > 0) {
 
-    res.render('FavoriteGames', {
-        user: req.session.idUser,
-        allProducts: await db.getAllFavoriteList(req.session.idUser.id)
-    });
+
+            const ar = await db.getTableListProductByListGame(gameList);
+            console.log(ar);
+            res.render('FavoriteGames', {
+                user: req.session.idUser,
+                ListFavoriteGame: gameList,
+                products: await db.getProductFromAllListFavorite(gameList),
+                isProductInList: (productId, listId) => {
+
+                    if (ar.length > 0) {
+                        let result = ar.some(obj => { return obj.list_id == listId && obj.product_id == productId; })
+                        return result;
+                    }
+                    else {
+                        return false;
+                    }
+
+                }
+
+            })
+        }
+        else {
+            res.render('FavoriteGames', {
+                user: req.session.idUser,
+                ListFavoriteGame: gameList,
+
+            })
+        }
+    })
+
 })
 
+
+// CARRITO PAGE
 Router.get('/Carrito', async (req, res) => {
     req.session.lastURL = req.path;
     res.render('Cart', {
@@ -121,6 +157,8 @@ Router.get('/Carrito', async (req, res) => {
 
 
 // ALL POST METHODS
+
+//REGISTER POST
 Router.post('/register', async (req, res) => {
 
     const { first_name, last_name, email, user_name, password } = req.body;
@@ -131,7 +169,7 @@ Router.post('/register', async (req, res) => {
 
 })
 
-
+// LOGIN POST
 Router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     await db.validationLogin(username, password).then(obj => {
@@ -151,6 +189,7 @@ Router.post('/login', async (req, res) => {
     });
 })
 
+// CERRAR SESION LOGOUT
 Router.post('/logout', (req, res) => {
 
     req.session.userAuthenticated = false;
@@ -158,6 +197,8 @@ Router.post('/logout', (req, res) => {
     res.redirect('/');
 })
 
+
+// AGREGAR PRODCUTO AL CARRITO POST
 Router.post('/addToCart', async (req, res) => {
     console.log("Añadido al carro");
     console.log("Product: " + req.session.product);
@@ -167,6 +208,7 @@ Router.post('/addToCart', async (req, res) => {
     res.redirect(req.session.lastURL);
 })
 
+// AGREGAR UNA LISTA DE JUEGOS FAVORITOS POST
 Router.post('/addNewListGame', async (req, res) => {
     const { favoriteList } = req.body;
 
@@ -175,6 +217,9 @@ Router.post('/addNewListGame', async (req, res) => {
 
     res.redirect(req.session.lastURL);
 })
+
+
+// ELIMINAR UN PRODUCT DEL CARRITO POST
 Router.post('/carrito/delete/:idProduct/:idCart', async (req, res) => {
 
     const { idProduct, idCart } = req.params;
@@ -184,13 +229,27 @@ Router.post('/carrito/delete/:idProduct/:idCart', async (req, res) => {
     });
 })
 
+// ELIMINAR UNA LISTA DE JUEGO FAVORITA POST
 Router.post('/JuegosFavoritos/delete/:idList', async (req, res) => {
 
     const { idList } = req.params;
     await db.removeListFavoriteGames(idList).then(() => {
+        console.log(idList)
         res.redirect(req.session.lastURL);
 
+
     })
+})
+
+// AGREGAR UN PRODUCTO A UNA LISTA DE JUEGOS FAVORITAS
+Router.post('/product/addToFavoiteList/:idList/:idProduct', async (req, res) => {
+    const { idList, idProduct } = req.params;
+    await db.addProductToFavoriteList(idList, idProduct).then(() => {
+    console.log("Datos enviados");
+    }).then( ()=>{
+        res.redirect(req.session.lastURL);
+    })
+
 })
 
 

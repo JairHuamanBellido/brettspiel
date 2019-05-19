@@ -14,24 +14,38 @@
     <%- include('partials/sidebarUser') %>
     <div class="favoriteGames-container">
         <form action="/addNewListGame" method="POST">
-            <input type="text" name="favoriteList" placeholder="Ingrese la lista de juego">
+            <input required type="text" name="favoriteList" placeholder="Ingrese la lista de juego">
             <input type="submit" value="Agregar">
 
         </form>
 
         <h1>Favorites Games</h1>
+        <% if(ListFavoriteGame.length > 0){%>
+        <% ListFavoriteGame.forEach( async(listGame)=>{%>
+            <p><%= listGame.id %></p>
+            <p> <%= listGame.name%></p>
+            <form action="/JuegosFavoritos/delete/<%= listGame.id%>" method="POST">
+                <input type="submit" value="Eliminar lista">
+            </form>     
+            
+            <% if(products.length > 0) {%>
+                <% products.forEach(obj=>{ %>
+                    <% if(isProductInList(obj.id,listGame.id)){ %>
+                    <p><%= obj.id %> - <%= obj.name %></p>
+                    <% } %>
+                <% }) %>
+            <% } %>
 
-        <% if(allProducts.length > 0){%>
-        <% allProducts.forEach( listGame=>{%>
-        <p> <%= listGame.name%></p>
-        <form action="/JuegosFavoritos/delete/<%= listGame.id%>" method="POST">
-            <input type="submit" value="Eliminar lista">
-        </form>
-        <br>
+
+            <br>
+            <hr>
         <% }); %>
+        
         <% } else{%>
-        <p>No tienes lista de juegos favoritas</p>
+            <p>No tienes lista de juegos favoritas</p>
         <%} %>
+
+
     </div>
 
 </body>

@@ -86,7 +86,7 @@ module.exports.getProductFromCart = async (idUser) => {
                 }, '')
 
 
-                return await pool.query(`SELECT * from product WHERE id IN(${idProducts})`);
+                return await pool.query(`SELECT * from ${process.env.PRODUCT_TABLE} WHERE id IN(${idProducts})`);
             }
             else {
                 return { rows: [] };
@@ -142,4 +142,67 @@ module.exports.removeListFavoriteGames = async (idListGame) => {
     })
 
 
+}
+
+// AGREGAR UN PRODUCTO A UNA LISTA DE JUEGOS FAVORITOS DE UN USUARIO
+
+module.exports.addProductToFavoriteList = async (idList, idProduct) => {
+    const data = [idList, idProduct];
+    const query = `INSERT INTO ${process.env.LISTAFAVORITEGAME_PRODUCT_TABLE}(list_id,product_id) VALUES($1,$2)`;
+    await pool.query(query, data).then(() => {
+        console.log("Producto añadido a la lista de juegos");
+    }).catch(e => {
+        console.log("Algo malo paso men");
+    })
+
+
+}
+
+
+
+
+// CONSULTA DE LOS PRODUCTOS EN CADA LISTA DE JUEGOS FAVORITOS DE CADA USUARIO
+
+module.exports.getProductFromAllListFavorite = async (idList) => {
+    const cpoy = [];
+    idList.forEach(obj => {
+        cpoy.push(obj.id);
+    })
+
+    let listIdS = (cpoy.join(","));
+
+    const query = `SELECT product_id FROM ${process.env.LISTAFAVORITEGAME_PRODUCT_TABLE} WHERE list_id IN(${listIdS})`;
+    const res = await pool.query(query).catch(e => { console.log("algo paso mal aqui") });
+
+    if (res.rows.length > 0) {
+        const products = res.rows.reduce((prev, acc) => {
+            if (prev != '') {
+                acc.product_id += (',' + prev);
+            }
+            else {
+                acc.product_id += prev;
+            }
+            return acc.product_id;
+        }, '')
+
+        const queryProduct = `SELECT * FROM ${process.env.PRODUCT_TABLE} WHERE id IN(${products})`;
+        const responseProduct = await pool.query(queryProduct);
+        return responseProduct.rows;
+    }
+    else{
+        return [];
+    }
+}
+module.exports.getTableListProductByListGame = async (idlist) => {
+    const cpoy = [];
+    idlist.forEach(obj => {
+        cpoy.push(obj.id);
+    })
+
+    let listIdS = (cpoy.join(","));
+
+    const query = `SELECT * FROM ${process.env.LISTAFAVORITEGAME_PRODUCT_TABLE} WHERE list_id IN(${listIdS})`;
+    const res = await pool.query(query).catch(e => { console.log("algo paso mal aqui") });
+
+    return res.rows;
 }
