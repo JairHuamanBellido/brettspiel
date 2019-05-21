@@ -50,55 +50,21 @@
             <!-- CUANDO EL USUARIO SE HA LOGUEADO Y TIENE EL PRODUCTO EN SU CARRO -->
             <% } if(isProductInCart == true){%>
 
-                <form action="/deleteProductFromCart/<%=product.id%>/<%= user.cart %>" method="POST">
-                    <input type="submit" value="Sacar del carrito">
-                </form>
-                <% }  %>
-            <% if( isUserAuthenticated){ %>   
-            <button onclick="document.getElementById('modal-favoriteGameList').style.display='flex'">Añadir a favoritos</button>
+            <form action="/deleteProductFromCart/<%=product.id%>/<%= user.cart %>" method="POST">
+                <input type="submit" value="Sacar del carrito">
+            </form>
+            <% }  %>
+            <% if( isUserAuthenticated){ %>
+            <button onclick="document.getElementById('modal-favoriteGameList').style.display='flex'">Añadir a
+                favoritos</button>
             <% } %>
         </div>
 
         <div class="product-form">
-            <div class="card-product-form">
-                <div class="first-display-card">
-                    <h1> <sup>S/</sup><%= product.price%></h1>
-                    <p>Costo de alquiler por dia</p>
-                    <div class="fiel-dateRent">
-                        <div class="field-recogida">
-                            <label for="">Fecha de recogida</label><br>
-                            <input type="date" placeholder="Ingrese la fecha de recogida">
-                        </div>
-                        <div class="field-entrega">
-                            <label for="">Fecha de Entrega</label><br>
-                            <input type="date" placeholder="Ingrese la fecha de entrega">
-                        </div>
-                    </div>
-                    <div class="snacks-container-card">
-                        <button>Desea agregar Snacks</button>
-                    </div>
-                    <div class="field-quantityProducts">
-                        <label for="">Cantidad de productos</label>
-                        <input type="number">
-                    </div>
-                    <div class="bill-card">
-                        <h1>Boleta</h1>
-                        <div class="result-Snacks">
-                            <p>Snacks</p>
-                            <p>S/ 0.00</p>
-                        </div>
-                        <div class="result-rent">
-                            <p>Total de alquiler</p>
-                            <p>S/ 49.95</p>
-                        </div>
-                    </div>
-                    <button onclick="buy()">Comprar</button>
-                </div>
-            </div>
-
+            <%-  include('partials/cardProduct') %>
         </div>
     </div>
-
+    <script src="/public/js/productPage.js"></script>
 
 </body>
 

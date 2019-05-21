@@ -1,0 +1,92 @@
+<div class="card-product-form">
+    <div id="first-display-card">
+        <h1> <sup>S/</sup><%= product.price%></h1>
+        <p>Costo de alquiler por dia</p>
+        <div class="fiel">
+            <div class="field-recogida">
+                <label for="">Fecha de recogida</label><br>
+                <input type="date" placeholder="Ingrese la fecha de recogida">
+            </div>
+            <div class="field">
+                <label for="">Fecha de Entrega</label><br>
+                <input type="date" placeholder="Ingrese la fecha de entrega">
+            </div>
+        </div>
+        <div class="snacks-container-card">
+            <button>Desea agregar Snacks</button>
+        </div>
+        <div class="field">
+            <label for="">Cantidad de productos</label>
+            <input type="number">
+        </div>
+        <div class="bill-card">
+            <h1>Boleta</h1>
+            <div class="result-Snacks">
+                <p>Snacks</p>
+                <p>S/ 0.00</p>
+            </div>
+            <div class="result-rent">
+                <p>Total de alquiler</p>
+                <p>S/ 49.95</p>
+            </div>
+        </div>
+        <button onclick="ContinueWithPayment()">Continuar</button>
+    </div>
+    <div id="second-display-card">
+        <h1>Pago con tarjeta</h1>
+        <p>Completa los siguientes campos para adquirir el juego de mesa</p>
+
+        <div class="field">
+            <label for="">Numero de tarjeta</label>
+            <input type="text" placeholder="1234 3456 1231 3434">
+        </div>
+        <div class="field">
+            <div class="sub-field">
+                <label for="">Fecha de expiracion</label>
+                <input type="text" placeholder="MM/AA">
+
+            </div>
+            <div class="sub-field">
+                <label for="">CCV</label>
+                <input type="text" placeholder="CCV">
+            </div>
+        </div>
+
+        <div class="boleta-detail">
+            <h1>Boleta</h1>
+            <div class="field-camp">
+                <p>Snacks: </p>
+                <p>S/ 0.00</p>
+            </div>
+            <div class="field-camp">
+                <p>Alquiler por día: </p>
+                <p>S/ 0.00</p>
+            </div>
+
+            <div class="field-camp-result">
+                <p>Total: </p>
+                <p>49.95</p>
+            </div>
+
+        </div>
+
+        <div class="field-payBill">
+            <button>Pagar</button>
+        </div>
+
+    </div>
+
+    <div id="waitingLoadCard">
+
+        <div id="loader-container">
+            <div id="loader">
+    
+            </div>
+
+        </div>
+        <p>Cargando...</p>
+
+    </div>
+
+
+</div>
