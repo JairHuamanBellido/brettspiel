@@ -269,7 +269,7 @@ Router.post('/deleteProductFromFavoriteList/:idProduct/:idList', async (req, res
         res.redirect(req.session.lastURL);
     })
 
-
+    
 })
 
 module.exports.Router = Router;
