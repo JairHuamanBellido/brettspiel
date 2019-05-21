@@ -57,8 +57,6 @@ Router.get('/product/:id', isUserAuthenticated, async (req, res) => {
     req.session.product = req.params.id;
     db.getProduct(req.params.id).then(async (obj) => {
 
-
-
         if (req.session.userAuthenticated == false) {
             res.render('product', {
                 product: obj[0],
@@ -131,7 +129,7 @@ Router.get('/JuegosFavoritos', async (req, res) => {
             res.render('FavoriteGames', {
                 user: req.session.idUser,
                 ListFavoriteGame: gameList,
-                products: await db.getProductFromAllListFavorite(gameList),
+                products: await db.getProductFromAllListFavorite(req.session.idUser.id),
                 isProductInList: (productId, listId) => {
 
                     if (ar.length > 0) {
@@ -216,7 +214,7 @@ Router.post('/logout', (req, res) => {
 // AGREGAR PRODCUTO AL CARRITO POST
 Router.post('/addToCart', async (req, res) => {
 
-    await db.addProductToCart(req.session.product, req.session.idUser.cart);
+    await db.addProductToCart(req.session.product, req.session.idUser.id);
     res.redirect(req.session.lastURL);
 })
 
