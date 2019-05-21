@@ -24,7 +24,7 @@
         <% ListFavoriteGame.forEach( async(listGame)=>{%>
             
             <h2> Lista de juego:  <span style="font-size: 14px;color:#232456;"><%= listGame.name%></span></h2>
-            <form action="/JuegosFavoritos/delete/<%= listGame.id %>" method="POST">
+            <form action="/deleteFavoriteList/<%= listGame.id %>" method="POST">
                 <input type="submit" value="Eliminar lista">
             </form>     
             
@@ -32,7 +32,7 @@
                 <% products.forEach(obj=>{ %>
                     <% if(isProductInList(obj.id,listGame.id)){ %>
                     <p><%= obj.id %> - <%= obj.name %></p>
-                    <form action="/JuegosFavoritos/deleteProduct/<%= obj.id %>/<%= listGame.id %>" method="POST">
+                    <form action="/deleteProductFromFavoriteList/<%= obj.id %>/<%= listGame.id %>" method="POST">
                         <input type="submit" value="Eliminar">
                     </form>
                     <% } %>

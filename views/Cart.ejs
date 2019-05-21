@@ -23,7 +23,7 @@
 
 
                 <p><%= product.description %></p>
-                <form action="/Carrito/delete/<%=product.id%>/<%=user.id%>" method="POST">
+                <form action="/deleteProductFromCart/<%=product.id%>/<%=user.id%>" method="POST">
                     <input type="submit" value="Sacar del carrito">
                 </form>
 

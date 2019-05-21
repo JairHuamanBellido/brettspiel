@@ -232,7 +232,7 @@ Router.post('/addNewListGame', async (req, res) => {
 
 
 // ELIMINAR UN PRODUCT DEL CARRITO POST
-Router.post('/carrito/delete/:idProduct/:idCart', async (req, res) => {
+Router.post('/deleteProductFromCart/:idProduct/:idCart', async (req, res) => {
 
     const { idProduct, idCart } = req.params;
     await db.removeProductFromCart(idCart, idProduct).then(() => {
@@ -242,7 +242,7 @@ Router.post('/carrito/delete/:idProduct/:idCart', async (req, res) => {
 })
 
 // ELIMINAR UNA LISTA DE JUEGO FAVORITA POST
-Router.post('/JuegosFavoritos/delete/:idList', async (req, res) => {
+Router.post('/deleteFavoriteList/:idList', async (req, res) => {
 
     const { idList } = req.params;
     await db.removeListFavoriteGames(idList).then(() => {
@@ -251,7 +251,7 @@ Router.post('/JuegosFavoritos/delete/:idList', async (req, res) => {
 })
 
 // AGREGAR UN PRODUCTO A UNA LISTA DE JUEGOS FAVORITAS
-Router.post('/product/addToFavoiteList/:idList/:idProduct', async (req, res) => {
+Router.post('/addProductToFavoriteList/:idList/:idProduct', async (req, res) => {
     const { idList, idProduct } = req.params;
     await db.addProductToFavoriteList(idList, idProduct).then(() => {
     }).then(() => {
@@ -261,7 +261,7 @@ Router.post('/product/addToFavoiteList/:idList/:idProduct', async (req, res) => 
 })
 
 // ELIMINAR UN PRODUCTO DE UNA LISTA DE JUEGOS
-Router.post('/JuegosFavoritos/deleteProduct/:idProduct/:idList', async (req, res) => {
+Router.post('/deleteProductFromFavoriteList/:idProduct/:idList', async (req, res) => {
 
     const { idProduct, idList } = req.params;
     await db.removeProductFromList(idProduct, idList).then(() => {

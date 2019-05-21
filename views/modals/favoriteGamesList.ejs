@@ -8,11 +8,11 @@
                 <% if(!isProductInFavoriteList(product.id,listGame.id)){%>
                 <p><%= listGame.name %></p>
 
-                <form action="/product/addToFavoiteList/<%=listGame.id %>/<%=product.id%>" method="POST">
+                <form action="/addProductToFavoriteList/<%=listGame.id %>/<%=product.id%>" method="POST">
                     <input type="submit" value="Agregar">
                 </form>
                 <% } else{%>
-                    <form action="/JuegosFavoritos/deleteProduct/<%=product.id %>/<%=listGame.id%>" method="POST">
+                    <form action="/deleteProductFromFavoriteList/<%=product.id %>/<%=listGame.id%>" method="POST">
                         <input type="submit" value="Eliminar de favoritos">
                     </form>
                 <%} %>
