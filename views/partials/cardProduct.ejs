@@ -1,89 +1,101 @@
 <div class="card-product-form">
-    <div id="first-display-card">
-        <h1> <sup>S/</sup><%= product.price%></h1>
-        <p>Costo de alquiler por dia</p>
-        <div class="fiel">
-            <div class="field-recogida">
-                <label for="">Fecha de recogida</label><br>
-                <input type="date" placeholder="Ingrese la fecha de recogida">
+
+    <%  if(isUserAuthenticated){ %>
+    <form action="/createBill/<%=product.id%>/<%=user.id%>" method="POST">
+
+        <%} else{ %>
+        <form action=""></form>
+        <% }%>
+        <div id="first-display-card">
+            <h1 id="price-product"><%= product.price%></h1>
+            <p>Costo de alquiler por dia</p>
+            <div class="fiel">
+                <div class="field-recogida">
+                    <label for="">Fecha de recogida</label><br>
+                    <input id="startRentDate" onchange="setStartRentDate(this)" type="date" name="fecha de recogida" placeholder="Ingrese la fecha de recogida">
+                </div>
+                <div class="field">
+                    <label for="">Fecha de Entrega</label><br>
+                    <input id="endRentDate" onchange="setEndRentDate(this)" type="date" name="fecha de entrega" placeholder="Ingrese la fecha de entrega">
+                </div>
+            </div>
+            <div class="snacks-container-card">
+                <button>Desea agregar Snacks</button>
             </div>
             <div class="field">
-                <label for="">Fecha de Entrega</label><br>
-                <input type="date" placeholder="Ingrese la fecha de entrega">
+                <label for="">Cantidad de productos</label>
+                <input type="text" onkeyup="setQuantityProduct(this)" name="cantidad de productos" value="1" type="number" id="CantProduct">
             </div>
-        </div>
-        <div class="snacks-container-card">
-            <button>Desea agregar Snacks</button>
-        </div>
-        <div class="field">
-            <label for="">Cantidad de productos</label>
-            <input type="number">
-        </div>
-        <div class="bill-card">
-            <h1>Boleta</h1>
-            <div class="result-Snacks">
-                <p>Snacks</p>
-                <p>S/ 0.00</p>
+            <div class="bill-card">
+                <h1>Boleta</h1>
+                <div class="result-Snacks">
+                    <p>Snacks</p>
+                    <p>12.00</p>
+                    <input style="display: none;" name="SnacksTotal" type="text" value="0">
+                </div>
+                <div class="result-rent">
+                    <p>Total de alquiler</p>
+                    <p>S/ <span id="TotalRent"><%= product.price %></span></p>
+                    <input style="display: none;" name="RentTotal" id="FieldTotalRent" type="text" value="<%=product.price%>">
+                </div>
             </div>
-            <div class="result-rent">
-                <p>Total de alquiler</p>
-                <p>S/ 49.95</p>
-            </div>
+            <%  if(isUserAuthenticated){ %>
+            <a onclick="ContinueWithPayment()">Continuar</a>
+            <% } else{ %>
+                <a onclick="buy()">Continuar</a>
+            <% } %>
         </div>
-        <button onclick="ContinueWithPayment()">Continuar</button>
-    </div>
-    <div id="second-display-card">
-        <h1>Pago con tarjeta</h1>
-        <p>Completa los siguientes campos para adquirir el juego de mesa</p>
+        <div id="second-display-card">
+            <h1>Pago con tarjeta</h1>
+            <p>Completa los siguientes campos para adquirir el juego de mesa</p>
 
-        <div class="field">
-            <label for="">Numero de tarjeta</label>
-            <input type="text" placeholder="1234 3456 1231 3434">
-        </div>
-        <div class="field">
-            <div class="sub-field">
-                <label for="">Fecha de expiracion</label>
-                <input type="text" placeholder="MM/AA">
+            <div class="field">
+                <label for="">Numero de tarjeta</label>
+                <input name="numero de tarjeta" type="text" placeholder="1234 3456 1231 3434">
+            </div>
+            <div class="field">
+                <div class="sub-field">
+                    <label for="">Fecha de expiracion</label>
+                    <input name="fecha de expiracion tarjeta" type="text" placeholder="MM/AA">
 
-            </div>
-            <div class="sub-field">
-                <label for="">CCV</label>
-                <input type="text" placeholder="CCV">
-            </div>
-        </div>
-
-        <div class="boleta-detail">
-            <h1>Boleta</h1>
-            <div class="field-camp">
-                <p>Snacks: </p>
-                <p>S/ 0.00</p>
-            </div>
-            <div class="field-camp">
-                <p>Alquiler por día: </p>
-                <p>S/ 0.00</p>
+                </div>
+                <div class="sub-field">
+                    <label for="">CCV</label>
+                    <input name="CCV" type="text" placeholder="CCV">
+                </div>
             </div>
 
-            <div class="field-camp-result">
-                <p>Total: </p>
-                <p>49.95</p>
+            <div class="boleta-detail">
+                <h1>Boleta</h1>
+                <div class="field-camp">
+                    <p>Snacks: </p>
+                    <p>S/ 0.00</p>
+                </div>
+                <div class="field-camp">
+                    <p>Alquiler por día: </p>
+                    <p>S/ 0.00</p>
+                </div>
+                <div class="field-camp-result">
+                    <p>Total: </p>
+                    <p>49.95</p>
+                </div>
+            </div>
+
+            <div class="field-payBill">
+                <button>Pagar</button>
             </div>
 
         </div>
-
-        <div class="field-payBill">
-            <button>Pagar</button>
-        </div>
-
-    </div>
+    </form>
 
     <div id="waitingLoadCard">
 
         <div id="loader-container">
             <div id="loader">
-    
             </div>
-
         </div>
+
+
         <p>Cargando...</p>
 
     </div>

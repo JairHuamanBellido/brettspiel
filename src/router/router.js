@@ -270,4 +270,10 @@ Router.post('/deleteProductFromFavoriteList/:idProduct/:idList', async (req, res
     
 })
 
+
+Router.post('/createBill/:idProduct/:idClient', (req,res)=>{
+    console.log(req.body);
+    console.log(req.params);
+    res.redirect('/');
+})
 module.exports.Router = Router;
