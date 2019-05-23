@@ -169,3 +169,12 @@ module.exports.removeProductFromList = async (idProduct, idList) => {
     });
 
 }
+
+// CONSULTAR TODO LOS SNACKS
+
+module.exports.getAllSnacks = async()=>{
+    const query = `SELECT * FROM ${process.env.SNACK_TABLE}`;
+    const res =  await pool.query(query);
+
+    return res.rows;
+}

@@ -90,7 +90,8 @@ Router.get('/product/:id', isUserAuthenticated, async (req, res) => {
                     else {
                         return false;
                     }
-                }
+                },
+                snacks: await db.getAllSnacks()
 
             })
         }
