@@ -12,7 +12,7 @@
             <div class="fiel">
                 <div class="field-recogida">
                     <label for="">Fecha de recogida</label><br>
-                    <input id="startRentDate" onchange="setStartRentDate(this)" type="date" name="fecha de recogida" placeholder="Ingrese la fecha de recogida">
+                    <input id="startRentDate" type="date" name="fecha de recogida" placeholder="Ingrese la fecha de recogida">
                 </div>
                 <div class="field">
                     <label for="">Fecha de Entrega</label><br>
@@ -31,12 +31,12 @@
                 <div class="result-Snacks">
                     <p>Snacks</p>
                     <p>12.00</p>
-                    <input style="display: none;" name="SnacksTotal" type="text" value="0">
+                    <input  name="SnacksTotal" type="text" value="0">
                 </div>
                 <div class="result-rent">
                     <p>Total de alquiler</p>
                     <p>S/ <span id="TotalRent"><%= product.price %></span></p>
-                    <input style="display: none;" name="RentTotal" id="FieldTotalRent" type="text" value="<%=product.price%>">
+                    <input style="display: none;" name="RentTotal" id="FieldTotalRent" type="text">
                 </div>
             </div>
             <%  if(isUserAuthenticated){ %>
