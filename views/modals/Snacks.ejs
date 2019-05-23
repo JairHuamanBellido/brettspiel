@@ -7,7 +7,9 @@
             <p><%= snack.price %></p>
             
             <div class="options">
-                
+                <button disabled onclick="DownQuantity(this)">Down</button>
+                <p>0</p>
+                <button onclick="UpQuantity(this)">Up</button>
             </div>
 
 
@@ -15,3 +17,5 @@
         <button onclick="document.getElementById('snackModal').style.display='none';">Close</button>
     </div>
 </div>
+
+<script src="/public/js/modalSnacks.js"></script>
