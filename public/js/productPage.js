@@ -3,7 +3,6 @@ const waitingViewOfCardProduct = document.getElementById('waitingLoadCard');
 const lastViewOfCardProduct = document.getElementById('second-display-card');
 const loader = document.getElementById('loader');
 
-// import { dayNumber } from "./DatesAlgorithm.js";
 
 let startDateRent = document.getElementById("startRentData");
 let endDateRent = document.getElementById("endRentData");
@@ -23,20 +22,18 @@ const ContinueWithPayment = () => {
         waitingViewOfCardProduct.style.display = "none";
         lastViewOfCardProduct.style.display = "block";
 
-    }, 2300);
+   }, 2300);
+} 
 
 
-}
-
-// console.log( dayNumber('01/01/2020') - dayNumber('30/11/2019'));
 
 
-const setStartRentDate = (e) => {
-    console.log(e);
+function setStartRentDate (e) {
+    console.log(dayNumber(e.value));
 }
 
 const setEndRentDate = (e) => {
-    console.log(e)
+    console.log(dayNumber(e.value));
 }
 
 const setQuantityProduct = (e, w) => {
