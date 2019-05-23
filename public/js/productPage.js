@@ -3,6 +3,8 @@ const waitingViewOfCardProduct = document.getElementById('waitingLoadCard');
 const lastViewOfCardProduct = document.getElementById('second-display-card');
 const loader = document.getElementById('loader');
 
+// import { dayNumber } from "./DatesAlgorithm.js";
+
 let startDateRent = document.getElementById("startRentData");
 let endDateRent = document.getElementById("endRentData");
 let priceProduct = parseFloat(document.getElementById('price-product').textContent);
@@ -26,40 +28,15 @@ const ContinueWithPayment = () => {
 
 }
 
-const closeYearBy4Module = (numb) => {
-    let founded;
-    for (let i = numb; i >= 0; i--) {
-        if (i % 4 === 0) {
+// console.log( dayNumber('01/01/2020') - dayNumber('30/11/2019'));
 
-            founded = i;
-            break;
-        }
-
-    }
-    return founded;
-}
-
-const daysUntilYear = (year) => {
-
-
-    return closeYearBy4Module(year) / 4 * 1461;
-}
-
-const calculateDays = (year) => {
-
-    return (year % 4 == 0) ? daysUntilYear(year) :
-        daysUntilYear(year) + 366 + (365 * (year - (closeYearBy4Module(year) + 1)));
-}
-
-
-console.log(calculateDays(2));
 
 const setStartRentDate = (e) => {
-    console.log(e.value);
+    console.log(e);
 }
 
 const setEndRentDate = (e) => {
-    console.log(e.value)
+    console.log(e)
 }
 
 const setQuantityProduct = (e, w) => {
