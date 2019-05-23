@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="snacks-container-card">
-                <button>Desea agregar Snacks</button>
+                <a onclick="openModalSnacks()">Desea agregar Snacks</a>
             </div>
             <div class="field">
                 <label for="">Cantidad de productos</label>
@@ -31,12 +31,12 @@
                 <div class="result-Snacks">
                     <p>Snacks</p>
                     <p>12.00</p>
-                    <input  name="SnacksTotal" type="text" value="0">
+                    <input style="display: none;" name="SnacksTotal" type="text">
                 </div>
                 <div class="result-rent">
                     <p>Total de alquiler</p>
                     <p>S/ <span id="TotalRent"><%= product.price %></span></p>
-                    <input style="display: none;" name="RentTotal" id="FieldTotalRent" type="text">
+                    <input style="display: none;" name="RentTotal" id="FieldTotalRent" type="text" >
                 </div>
             </div>
             <%  if(isUserAuthenticated){ %>

@@ -67,3 +67,8 @@ const setQuantityProduct = (e) => {
     }
 
 }
+
+
+const openModalSnacks = ()=>{    
+    document.getElementById("snackModal").style.display="flex";
+}

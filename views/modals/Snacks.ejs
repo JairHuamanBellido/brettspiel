@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="/public/css/snacksModal.css">
+<div id="snackModal">
+    <div class="snackModalContainer">
+        <h1>Todos los Snacks</h1>
+        <% snacks.forEach(snack=>{ %>
+            <p><%= snack.name %></p>
+            <p><%= snack.price %></p>
+            
+            <div class="options">
+                
+            </div>
+
+
+        <% }) %>
+        <button onclick="document.getElementById('snackModal').style.display='none';">Close</button>
+    </div>
+</div>
