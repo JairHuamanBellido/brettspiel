@@ -12,11 +12,11 @@
             <div class="fiel">
                 <div class="field-recogida">
                     <label for="">Fecha de recogida</label><br>
-                    <input id="startRentDate" type="date" name="fecha de recogida" placeholder="Ingrese la fecha de recogida">
+                    <input id="startRentDate" type="date" name="fechaDeRecogida" placeholder="Ingrese la fecha de recogida">
                 </div>
                 <div class="field">
                     <label for="">Fecha de Entrega</label><br>
-                    <input id="endRentDate" onchange="setEndRentDate(this)" type="date" name="fecha de entrega" placeholder="Ingrese la fecha de entrega">
+                    <input id="endRentDate" onchange="setEndRentDate(this)" type="date" name="fechaDeEntrega" placeholder="Ingrese la fecha de entrega">
                 </div>
             </div>
             <div class="snacks-container-card">
@@ -24,19 +24,27 @@
             </div>
             <div class="field">
                 <label for="">Cantidad de productos</label>
-                <input type="text" onkeyup="setQuantityProduct(this)" name="cantidad de productos" value="1" type="number" id="CantProduct">
+                <input type="text" onkeyup="setQuantityProduct(this)" name="cantidadDeProductos" value="1" type="number" id="CantProduct">
             </div>
+
+            <% snacks.forEach( snack=>{ %>
+                <input type="text" style="display: none;" value="false" name="<%=snack.name %>" id="<%= snack.name%>field">
+            <% })  %>
             <div class="bill-card">
                 <h1>Boleta</h1>
                 <div class="result-Snacks">
                     <p>Snacks</p>
                     <p>S/ <span id="TotalSnacks">0.00</span></p>
-                    <input style="display: none;" name="SnacksTotal" type="text">
+                    <input id="fieldTotalSnack" style="display: none;" name="SnacksTotal" value="0.00" type="text">
                 </div>
                 <div class="result-rent">
                     <p>Total de alquiler</p>
                     <p>S/ <span id="TotalRent"><%= product.price %></span></p>
                     <input style="display: none;" name="RentTotal" id="FieldTotalRent" type="text" >
+                </div>
+                <div class="result-total">
+                    <p>Total</p>
+                    <p>S/ <span id="FieldTotalOrder"><%=product.price%></span></p>
                 </div>
             </div>
             <%  if(isUserAuthenticated){ %>
@@ -51,12 +59,12 @@
 
             <div class="field">
                 <label for="">Numero de tarjeta</label>
-                <input name="numero de tarjeta" type="text" placeholder="1234 3456 1231 3434">
+                <input name="numeroDeTarjeta" type="text" placeholder="1234 3456 1231 3434">
             </div>
             <div class="field">
                 <div class="sub-field">
                     <label for="">Fecha de expiracion</label>
-                    <input name="fecha de expiracion tarjeta" type="text" placeholder="MM/AA">
+                    <input name="fechaDeExpiracionTarjeta" type="text" placeholder="MM/AA">
 
                 </div>
                 <div class="sub-field">

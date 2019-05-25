@@ -11,8 +11,8 @@ let priceProduct = parseFloat(document.getElementById('price-product').textConte
 let totalRent = document.getElementById('TotalRent');
 let cantProduct = document.getElementById("CantProduct");
 let fieldTotalRent = document.getElementById("FieldTotalRent");
-
-
+let fieldTotalOrder = document.getElementById("FieldTotalOrder");
+let snacksField = document.getElementById("fieldTotalSnack");
 let realTotal;
 
 
@@ -47,12 +47,17 @@ const setEndRentDate = (e) => {
     }
 
     realTotal = totalDays * priceProduct;
-
+    console.log("Total: " + parseFloat(fieldTotalRent.value) + parseFloat(snacksField.value));
+    fieldTotalOrder.textContent = Math.round((parseFloat(fieldTotalRent.value) + parseFloat(snacksField.value)) * 100) / 100;
 
 }
 
 const setQuantityProduct = (e) => {
-    console.log(fieldTotalRent.value);
+    if(typeof realTotal === 'undefined'){
+        realTotal = parseFloat(priceProduct);
+    }
+    console.log("Real total: "+realTotal);
+    //console.log(fieldTotalRent.value);
     if (e.value == "0") {
         e.value = 1;
 
@@ -65,10 +70,10 @@ const setQuantityProduct = (e) => {
         totalRent.textContent = realTotal * e.value;
         fieldTotalRent.value = realTotal * e.value;
     }
-
+    fieldTotalOrder.textContent = Math.round((parseFloat(fieldTotalRent.value) + parseFloat(snacksField.value)) * 100) / 100;
 }
 
 
-const openModalSnacks = ()=>{    
-    document.getElementById("snackModal").style.display="flex";
+const openModalSnacks = () => {
+    document.getElementById("snackModal").style.display = "flex";
 }
