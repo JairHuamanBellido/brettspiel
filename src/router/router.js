@@ -63,8 +63,8 @@ Router.get('/product/:id', isUserAuthenticated, async (req, res) => {
                 isUserAuthenticated: false,
                 message: req.session.errM,
                 error: req.session.errLogin,
-                isProductInCart: false
-
+                isProductInCart: false,
+                snacks:await db.getAllSnacks()
             })
         }
         else {
