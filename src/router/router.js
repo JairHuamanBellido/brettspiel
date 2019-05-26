@@ -23,7 +23,7 @@ isUserAuthenticated = (req, res, next) => {
 
 
 // HOME PAGE
-Router.get('/', isUserAuthenticated, async (req, res) => {
+Router.get('/', isUserAuthenticated,AuthenticationError, async (req, res) => {
     const products = await db.getAllProducts();
     req.session.lastURL = req.path;
 

@@ -17,7 +17,8 @@
     <div class="allProducts">
 
         <% allProduct.forEach(product=>{ %>
-        <a class="product-item" href="http://localhost:3000/product/<%=product.id%>">
+        <a class="product-item" href="/product/<%=product.id%>">
+            <img src="<%=product.url%>" alt="">
             <h2><%= product.name %></h2>
             <p><%= product.tipe %></p>
         </a>
