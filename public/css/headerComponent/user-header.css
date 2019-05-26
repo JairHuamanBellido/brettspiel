@@ -1,0 +1,111 @@
+@import url("/public/css/font/font.css");
+
+.user-header-container{
+    width: 200px;
+    display: flex;
+    position: relative;
+}
+.user-info-header{
+    display: flex;
+}
+
+.user-info-header button{
+    background: transparent;
+    border: none;
+    margin-left: 12px;
+    cursor: pointer;
+}
+#nameUser{
+    font-size: 18px;
+    font-family: 'Nunito Sans',sans-serif;
+    color: #576482;
+}
+
+#user-options{
+    overflow: hidden;
+    display: none;
+    height: 0px;
+    position: absolute;
+    top: 100%;
+    left: -120px;
+    margin: 1em 0;
+    width: 250px;
+    background: #fff;
+    box-shadow: 0 6px 16px 7px rgba(0,0,0,.1);
+}
+
+
+.item-link-options:hover{
+    transition: all .2s ease-in-out;
+    border-left: 3px solid rgb(75, 108, 185);
+    background: rgba(75, 108, 185, .1);
+}
+.navOption img{
+    margin-right: 12px;
+}
+.navOption a{
+    padding: 18px 24px;
+    color: #576482;
+    font-weight: 600;
+    display: flex;
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 18px;
+    align-items: center;
+}
+
+.iten-link-logout{
+    width: 100%;
+
+    background: none;
+    cursor: pointer;
+    border: none;
+    padding: 18px 24px;
+    color: #576482;
+    font-weight: 600;
+    display: flex;
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 18px;
+    align-items: center;
+    cursor: pointer;
+}
+#link-item5:hover{
+    transition: all .2s ease-in-out;
+    background: rgba(255,67,67,.1) !important;
+    border-left: 3px solid rgba(255,67,67, 1) !important;
+}
+
+.show{
+    transition: all .2s ease-in-out;
+    height: 300px  !important;
+    display: flex !important;
+    z-index: 9999999;
+    flex-direction: column;
+}
+.item-link-options{
+    opacity: 0;
+
+}
+
+.vanish{
+    opacity: 1 !important;
+    animation-name: fadeIn;    
+    animation-duration: .15s;
+    animation-timing-function: ease-in-out;
+    
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+
+    50%{
+        opacity: .2;
+ 
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0px);
+    }
+}

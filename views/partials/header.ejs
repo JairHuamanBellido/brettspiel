@@ -1,17 +1,18 @@
-<link rel="stylesheet" href="/public/css/header.css">
+<link rel="stylesheet" href="/public/css/headerComponent/header.css">
 <header>
 
+    <div class="logo">
+        <a id="logo" href="http://localhost:3000/">
+            <img width="48" height="48" src="/public/img/icons/Logo.svg" alt="">
+            Brettspiel
+        </a>
 
-    <a id="logo" href="http://localhost:3000/">Home</a>
-    <input type="text" placeholder="Buscas algun producto">
+    </div>
+    <input id="SearchBar" type="text" placeholder="Buscas algun producto">
     <div class="form-header">
 
         <% if(!isUserAuthenticated || isUserAuthenticated==undefined){%>
         <button id="Login-btn" onclick="buy()">Login</button>
-        <!-- <form action="/login" method="GET">
-            <input id="Login-btn" type="submit" value="Login">
-
-        </form> -->
         
         <form  action="/register" method="GET">
             <input id="Register-btn" type="submit" value="Ir a registro">

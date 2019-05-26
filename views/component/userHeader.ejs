@@ -1,19 +1,56 @@
-<link rel="stylesheet" href="/public/css/user-header.css">
+<link rel="stylesheet" href="/public/css/headerComponent/user-header.css">
 <div class="user-header-container">
-    <p><%= user.first_name %></p>
 
-    <button onclick="show()">T</button>
+
+    <div class="user-info-header">
+        <p id="nameUser"><%= user.first_name %></p>
+
+        <button onclick="show()">
+            <img width="20" height="12" src="/public/img/icons/caret-down.svg" alt="">
+        </button>
+
+    </div>
     <div id="user-options">
 
+        <div class="navOption">
+            <a id="link-item1" class="item-link-options" href="http://localhost:3000/Perfil">
+                <img width="22" height="22" src="/public/img/icons/Info.svg" alt="">
+                Perfil
+            </a>
 
-        <a href="http://localhost:3000/Perfil">Perfil</a>
-        <a href="http://localhost:3000/MisBoletas">Boletas</a>
-        <a href="http://localhost:3000/JuegosFavoritos">Juegos Favoritos</a>
-        <a href="http://localhost:3000/Carrito">Mi carrito</a>
+        </div>
+        <div class="navOption">
+            <a id="link-item2" class="item-link-options" href="http://localhost:3000/MisBoletas">
+                <img width="22" height="22" src="/public/img/icons/IconBoleta.svg" alt="">
+                Boletas
+            </a>
 
-        <form action="/logout" method="POST">
-            <input type="submit" value="Salir de la cuenta">
-        </form>
+        </div>
+        <div class="navOption">
+            <a id="link-item3" class="item-link-options" href="http://localhost:3000/JuegosFavoritos">
+                <img width="22" height="22" src="/public/img/icons/favorite.svg" alt="">
+                Juegos Favoritos
+            </a>
+
+        </div>
+        <div class="navOption">
+            <a id="link-item4" class="item-link-options" href="http://localhost:3000/Carrito">
+                <img width="22" height="22" src="/public/img/icons/cart.svg" alt="">
+                Mi carrito
+            </a>
+
+        </div>
+        <div class="navOption">
+
+            <form id="link-item5" class=" item-link-options" action="/logout" method="POST">
+                <button type="submit" class="iten-link-logout">
+                    <img width="22" height="22" src="/public/img/icons/logout.svg" alt="">
+                    Salir
+                </button>
+            </form>
+
+        </div>
+
     </div>
 
 </div>

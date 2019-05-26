@@ -6,18 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
+    <link rel="stylesheet" href="/public/css/register.css">
 </head>
 
 <body>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <img src="/public/img/icons/Logo.svg" alt="">
+            </a>
+        </div>
+        <div class="text-header">
 
-    <form action="/register" method="POST">
-        <input required type="text" autofocus name="first_name" placeholder="Nombres">
-        <input required type="text" name="last_name" placeholder="Apellidos">
-        <input required type="email" name="email" placeholder="Email">
-        <input required type="text" name="user_name" placeholder="Usuario">
-        <input required type="password" name="password" placeholder="password">
-        <input type="submit" value="Submit">
-    </form>
+            <h2>Registro</h2>
+            <div class="line"></div>
+            <p>Únete y disfruta de nuestros juegos</p>
+        </div>
+
+    
+        
+    </header>
+
+    <div class="register-container">
+
+        <form action="/register" method="POST">
+
+            <div class="field-register">
+                <div class="box">
+
+                    <label for="">Nombres</label>
+                    <input autocomplete="off" required type="text" autofocus name="first_name" placeholder="Nombres">
+                </div>
+            </div>
+            <div class="field-register">
+                <div class="box">
+
+                    <label for="">Apellidos</label>
+                    <input autocomplete="off" required type="text" name="last_name" placeholder="Apellidos">
+                </div>
+
+            </div>
+
+
+            <div class="field-register">
+                <div class="box">
+
+                    <label for="">Correo Electrónico</label>
+                    <input autocomplete="off" required type="email" name="email" placeholder="Email">
+                </div>
+
+            </div>
+            <div class="field-register">
+                <div class="box">
+
+                    <label for="">Usuario</label>
+                    <input autocomplete="off" required type="text" name="user_name" placeholder="Usuario">
+                </div>
+
+            </div>
+            <div class="field-register">
+                <div class="box">
+
+                    <label for="">Contraseña</label>
+                    <input autocomplete="off" required type="password" name="password" placeholder="password">
+                </div>
+            </div>
+            <div class="field-register">
+                <div class="box">
+
+                    <label for="">Repetir Contraseña</label>
+                    <input autocomplete="off" required type="password" placeholder="password">
+                </div>
+            </div>
+            <div class="field-register">
+                <div class="box">
+
+                    <input id="RegisterForm-btn" type="submit" value="Submit">
+                </div>
+            </div>
+        </form>
+    </div>
 
 </body>
 
