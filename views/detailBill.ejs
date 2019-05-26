@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Detail Bill</title>
+</head>
+<body>
+    <%- include('partials/header') -%>
+    <h1>Boleta #<%= bill.id%></h1>
+    <p>Start date: <%= fechaRecogida %></p>
+    <p>End date: <%= fechaDevolucion %></p>
+
+    <h2>Snacks</h2>
+    <% snacksOfBill.forEach(snack=>{ %>
+        <h4><%=snack.name %></h4>
+        <p><%=snack.price %></p>
+        <p>Cantidad: <%= snack.quantity%></p>
+
+    <% }) %>
+</body>
+</html>

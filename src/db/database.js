@@ -183,34 +183,55 @@ module.exports.getAllSnacks = async () => {
 
 // AGREGAR UNA BOLETA
 module.exports.createBill = async (startRentDate, endrentdate, quantity, Snacks, SnackTotal, RentTotal, OrderTotal, CreditCard, expireDate, CCV, idProduct, idClient) => {
-   
-    const bill = [startRentDate, endrentdate, OrderTotal, idClient, RentTotal, SnackTotal];
-    
-    const query = `INSERT INTO ${process.env.BILL_tABLE}(startrentdate,endrentdate,totalprice,id_client,totalrent,totalsnack) VALUES ($1,$2,$3,$4,$5,$6)`;
 
-    const lastIdBill = parseInt((await pool.query(`SELECT last_value FROM ${process.env.BILL_SEQ_TABLE}`)).rows[0].last_value);
-    
+    const bill = [startRentDate, endrentdate, OrderTotal, idClient, RentTotal, SnackTotal];
+
+    const query = `INSERT INTO ${process.env.BILL_TABLE}(startrentdate,endrentdate,totalprice,id_client,totalrent,totalsnack) VALUES ($1,$2,$3,$4,$5,$6)`;
+
+
 
 
     // AGREGAR SOLO LOS SNACKS QUE FUERON SELECCIONADOS
     Snacks = Snacks.filter(obj => obj.indexOf("true") != -1);
 
- 
-    await pool.query(query, bill).then(obj => {
 
+    await pool.query(query, bill).then(async () => {
+        const lastIdBill = parseInt((await pool.query(`SELECT last_value FROM ${process.env.BILL_SEQ_TABLE}`)).rows[0].last_value);
+
+        console.log()
         if (Snacks.length > 0) {
             Snacks.forEach(async (obj) => {
                 await pool.query(`INSERT INTO ${process.env.SNACKS_BILL_TABLE}(bill_id,snack_id,quantity) VALUES (${lastIdBill},${parseInt(obj.slice(7, 8))},${parseInt(obj.slice(5, 6))})`).then(() => {
+                    console.log("Ingresaco snack correctamente");
                 }).catch(e => {
+                    console.log("Error insercion snack");
                     console.log(e);
                 });
             })
         }
+
     }).catch(e => {
         console.log(e);
     })
-    
+}
 
 
 
+module.exports.getAllBillsByClient = async (idClient) => {
+    const res = await pool.query(`SELECT * FROM ${process.env.BILL_TABLE} WHERE id_client = ${idClient}`);
+    return res.rows;
+
+}
+
+module.exports.getBillInfoById = async (billId) => {
+    const res = await pool.query(`SELECT * FROM ${process.env.BILL_TABLE} WHERE id = ${billId}`);
+    return res.rows[0];
+}
+
+
+module.exports.getSnacksByBill = async (billId) => {
+    const query = `SELECT * FROM ${process.env.SNACK_TABLE} INNER JOIN ${process.env.SNACKS_BILL_TABLE} ON ${process.env.SNACK_TABLE}.id = ${process.env.SNACKS_BILL_TABLE}.snack_id AND bill_id = ${billId}`;
+    const res = await pool.query(query);
+
+    return res.rows;
 }

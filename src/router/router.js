@@ -64,12 +64,12 @@ Router.get('/product/:id', isUserAuthenticated, async (req, res) => {
                 message: req.session.errM,
                 error: req.session.errLogin,
                 isProductInCart: false,
-                snacks:await db.getAllSnacks()
+                snacks: await db.getAllSnacks()
             })
         }
         else {
             const ar = await db.getAllFavoriteList(req.session.idUser.id);
-            
+
             let ar2 = undefined;
             if (ar.length > 0) {
                 ar2 = await db.getTableListProductByListGame(ar);
@@ -110,11 +110,29 @@ Router.get('/Perfil', async (req, res) => {
 })
 
 // BOLETAS PAGE
-Router.get('/MisBoletas', (req, res) => {
+Router.get('/MisBoletas', async (req, res) => {
     req.session.lastURL = req.path;
 
     res.render('Bills', {
         user: req.session.idUser,
+        bills: await db.getAllBillsByClient(req.session.idUser.id)
+    });
+})
+
+// Detalle de la bola
+
+Router.get('/Boleta/:idBoleta', async (req, res) => {
+    let date = await db.getBillInfoById(req.params.idBoleta);
+
+    let fechaRecogida = date.startrentdate.getDate() + "/" + (date.startrentdate.getMonth() + 1) + "/" + date.startrentdate.getFullYear();
+    let fechaEntrega = date.endrentdate.getDate() + "/" + (date.endrentdate.getMonth() + 1) + "/" + date.endrentdate.getFullYear();
+
+    res.render('detailBill', {
+        bill: await db.getBillInfoById(req.params.idBoleta),
+        snacksOfBill: await db.getSnacksByBill(req.params.idBoleta),
+        user: req.session.idUser,
+        fechaRecogida: fechaRecogida,
+        fechaDevolucion: fechaEntrega
     });
 })
 
@@ -268,13 +286,13 @@ Router.post('/deleteProductFromFavoriteList/:idProduct/:idList', async (req, res
         res.redirect(req.session.lastURL);
     })
 
-    
+
 })
 
 
-Router.post('/createBill/:idProduct/:idClient', async (req,res)=>{
-    
-    const {fechaDeRecogida,
+Router.post('/createBill/:idProduct/:idClient', async (req, res) => {
+
+    const { fechaDeRecogida,
         fechaDeEntrega,
         cantidadDeProductos,
         PiqueoSnax,
@@ -285,13 +303,13 @@ Router.post('/createBill/:idProduct/:idClient', async (req,res)=>{
         TotalOrder,
         numeroDeTarjeta,
         fechaDeExpiracionTarjeta,
-        CCV}  =  req.body; 
-        
-        const totalSnacks = [Pringles,IncaKola,PiqueoSnax];
-        await db.createBill(fechaDeRecogida,fechaDeEntrega,parseInt(cantidadDeProductos),totalSnacks,
-                            parseFloat(SnacksTotal),parseFloat(RentTotal),parseFloat(TotalOrder),numeroDeTarjeta,fechaDeExpiracionTarjeta,CCV,
-                            req.params.idProduct,req.params.idClient);
-        //console.log(req.params);
+        CCV } = req.body;
+
+    const totalSnacks = [Pringles, IncaKola, PiqueoSnax];
+    await db.createBill(fechaDeRecogida, fechaDeEntrega, parseInt(cantidadDeProductos), totalSnacks,
+        parseFloat(SnacksTotal), parseFloat(RentTotal), parseFloat(TotalOrder), numeroDeTarjeta, fechaDeExpiracionTarjeta, CCV,
+        req.params.idProduct, req.params.idClient);
+    //console.log(req.params);
     res.redirect('/');
 })
 

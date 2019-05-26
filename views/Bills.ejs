@@ -14,5 +14,21 @@
         <h1>Bills</h1>
     </div>
 
+    <% if(bills.length > 0){%>
+        <% bills.forEach(bill=>{%>
+            
+            
+            <p><%=bill.id%></p>
+            <p><%=bill.totalprice%></p>
+            <form action="/Boleta/<%=bill.id%>" method="GET">
+                <input type="submit" value="Ver boleta">
+            </form>
+        <br>
+        <hr>
+        <%}) %>
+    <% } else{ %>
+        <p>No cuentas con boletas</p>
+    <% } %>
+
 </body>
 </html>
