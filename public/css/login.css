@@ -1,3 +1,5 @@
+@import url("/public/css/font/font.css");
+
 #modal-login{
     display: none;
     width: 100vw;
@@ -19,4 +21,91 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
+}
+.header-login{
+    width: 100%;
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.header-login img{
+    margin-bottom: 1em;
+}
+.header-login h1{
+    font-family: Qanelas;
+    font-size: 24px;
+    color: #7B82A5;
+}
+.header-login .line{
+    width: 200px;
+    margin: .75em auto;
+    height: 5px;
+    border-radius: 10000px;
+    background: linear-gradient(90deg, #81D0F3,#6C8FF1);
+    
+}
+.header-login p{
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 14px;
+    color: #7B82A5;
+    opacity: .78;
+}
+
+#modal-card-login form .field-login{
+    margin: 2em 0;
+}
+
+#modal-card-login form .field-login {
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-card-login form .field-login label{
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #576482;
+    margin-bottom: .5em;
+
+}
+
+#modal-card-login form .field-login input{
+    background: transparent !important;
+    border: 1px solid #c8c8c8;
+    width: 300px;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 16px;
+    color: #576482;
+}
+#modal-card-login form .field-login input:focus{
+    border: 1px solid #8D64CB;
+}
+
+#modal-card-login form .field-login #Submit-btn{
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Nunito Sans',sans-serif;
+    text-align: center;
+    width: 250px;
+    margin: 2em auto;
+    border: none;
+    border-radius: 4px;
+    background: #8796E1 !important;
+    color: #fff;
+}
+
+#closeModalLogin-btn{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    transform: translate(-5%,-5%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }

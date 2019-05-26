@@ -1,14 +1,32 @@
 <link rel="stylesheet" href="/public/css/login.css">
 <div id="modal-login">
     <div id="modal-card-login">
-        <button onclick="document.getElementById('modal-login').style.display='none';">X</button>
-        <h1>Iniciar Sesion</h1>
-        <div class="line"></div>
-        <p>Los mejores juegos en un solo sitio</p>
-        <form action="/login" method="POST" id="login-form">
-            <input type="text" autofocus name="username" placeholder="username">
-            <input type="password" name="password" placeholder="password">
-            <input type="submit" value="Ingresar">
+        
+
+        <button id="closeModalLogin-btn" onclick="document.getElementById('modal-login').style.display='none';">
+            <img src="/public/img/icons/close.svg" alt="">
+        </button>
+        <div class="header-login">
+            <img height="64"  width="64" src="/public/img/icons/Logo.svg" alt="">
+            <h1>Iniciar Sesion</h1>
+            <div class="line"></div>
+            <p>Los mejores juegos en un solo sitio</p>
+        </div>
+
+        <form autocomplete="off" action="/login" method="POST" id="login-form">
+            <div class="field-login">
+                <label for="">Usuario</label>
+                <input type="text" autofocus name="username" placeholder="username">
+            </div>
+            <div class="field-login">
+                <label for="">Password</label>
+                <input type="password" name="password" placeholder="password">
+
+            </div>
+            <div class="field-login">
+                <input id="Submit-btn" type="submit" value="Ingresar">
+
+            </div>
         </form>
         <% if(error){ %>
         <p style="color:red;"><%= message %></p>
