@@ -272,9 +272,28 @@ Router.post('/deleteProductFromFavoriteList/:idProduct/:idList', async (req, res
 })
 
 
-Router.post('/createBill/:idProduct/:idClient', (req,res)=>{
-    console.log(req.body);
-    console.log(req.params);
+Router.post('/createBill/:idProduct/:idClient', async (req,res)=>{
+    
+    const {fechaDeRecogida,
+        fechaDeEntrega,
+        cantidadDeProductos,
+        PiqueoSnax,
+        Pringles,
+        IncaKola,
+        SnacksTotal,
+        RentTotal,
+        TotalOrder,
+        numeroDeTarjeta,
+        fechaDeExpiracionTarjeta,
+        CCV}  =  req.body; 
+        
+        const totalSnacks = [Pringles,IncaKola,PiqueoSnax];
+        await db.createBill(fechaDeRecogida,fechaDeEntrega,parseInt(cantidadDeProductos),totalSnacks,
+                            parseFloat(SnacksTotal),parseFloat(RentTotal),parseFloat(TotalOrder),numeroDeTarjeta,fechaDeExpiracionTarjeta,CCV,
+                            req.params.idProduct,req.params.idClient);
+        //console.log(req.params);
     res.redirect('/');
 })
+
+
 module.exports.Router = Router;

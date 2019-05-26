@@ -178,3 +178,22 @@ module.exports.getAllSnacks = async()=>{
 
     return res.rows;
 }
+
+
+
+// AGREGAR UNA BOLETA
+
+module.exports.createBill = async(startRentDate,endrentdate,quantity,[Snacks],SnackTotal,RentTotal,OrderTotal,CreditCard,expireDate,CCV,idProduct,idClient)=>{
+    const bill = [startRentDate,endrentdate,OrderTotal,idClient,RentTotal,SnackTotal];
+    const query = `INSERT INTO ${process.env.BILL_tABLE}(startrentdate,endrentdate,totalprice,id_client,totalrent,totalsnack) VALUES ($1,$2,$3,$4,$5,$6)`;
+    await pool.query(query,bill).then( obj=>{
+        console.log(obj);
+    }).catch(e =>{
+        console.log("Algo malo paso en agregar boleta");
+        console.log(e);
+    })
+
+
+    
+
+}
