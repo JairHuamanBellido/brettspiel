@@ -6,7 +6,7 @@
             <p><%= snack.name %></p>
             <p id="<%=snack.name%>price"><%= snack.price %></p>
             
-            <div class="options" id="<%=snack.name%>">
+            <div class="options" data-target="<%=snack.id%>" id="<%=snack.name%>">
                 <button disabled onclick="DownQuantity(this)">Down</button>
                 <p>0</p>
                 <button onclick="UpQuantity(this)">Up</button>
