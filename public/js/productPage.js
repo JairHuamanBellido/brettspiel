@@ -11,7 +11,8 @@ let priceProduct = parseFloat(document.getElementById('price-product').textConte
 let totalRent = document.getElementById('TotalRent');
 let cantProduct = document.getElementById("CantProduct");
 let fieldTotalRent = document.getElementById("FieldTotalRent");
-let fieldTotalOrder = document.getElementById("FieldTotalOrder");
+let TotalOrder = document.getElementById("TotalOrder");
+let fieldTotalOrder = document.getElementById("fieldTotalOrder");
 let snacksField = document.getElementById("fieldTotalSnack");
 let realTotal;
 
@@ -19,6 +20,9 @@ let realTotal;
 
 const ContinueWithPayment = () => {
 
+    document.getElementById("second-TotalSnacks").textContent = snacksField.value;
+    document.getElementById("second-TotalRent").textContent = fieldTotalRent.value;
+    document.getElementById("second-TotalOrder").textContent = fieldTotalOrder.value;
     firstViewOfCardProdct.style.display = "none";
     waitingViewOfCardProduct.style.display = "block";
     loader.setAttribute("class", "loader-effect");
@@ -48,8 +52,8 @@ const setEndRentDate = (e) => {
 
     realTotal = totalDays * priceProduct;
     console.log("Total: " + parseFloat(fieldTotalRent.value) + parseFloat(snacksField.value));
-    fieldTotalOrder.textContent = Math.round((parseFloat(fieldTotalRent.value) + parseFloat(snacksField.value)) * 100) / 100;
-
+    TotalOrder.textContent = Math.round((parseFloat(fieldTotalRent.value) + parseFloat(snacksField.value)) * 100) / 100;
+    fieldTotalOrder.value = TotalOrder.textContent;
 }
 
 const setQuantityProduct = (e) => {
@@ -70,7 +74,8 @@ const setQuantityProduct = (e) => {
         totalRent.textContent = realTotal * e.value;
         fieldTotalRent.value = realTotal * e.value;
     }
-    fieldTotalOrder.textContent = Math.round((parseFloat(fieldTotalRent.value) + parseFloat(snacksField.value)) * 100) / 100;
+    TotalOrder.textContent = Math.round((parseFloat(fieldTotalRent.value) + parseFloat(snacksField.value)) * 100) / 100;
+    fieldTotalOrder.value = TotalOrder.textContent;
 }
 
 

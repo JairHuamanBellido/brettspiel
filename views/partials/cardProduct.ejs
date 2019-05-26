@@ -31,7 +31,7 @@
                 <input type="text" style="display: none;" value="false" name="<%=snack.name %>" id="<%= snack.name%>field">
             <% })  %>
             <div class="bill-card">
-                <h1>Boleta</h1>
+                <h1>Boleta</h1> 
                 <div class="result-Snacks">
                     <p>Snacks</p>
                     <p>S/ <span id="TotalSnacks">0.00</span></p>
@@ -40,11 +40,13 @@
                 <div class="result-rent">
                     <p>Total de alquiler</p>
                     <p>S/ <span id="TotalRent"><%= product.price %></span></p>
-                    <input style="display: none;" name="RentTotal" id="FieldTotalRent" type="text" >
+                    <input style="display: none;" name="RentTotal" value="<%=product.price%>" id="FieldTotalRent" type="text" >
                 </div>
                 <div class="result-total">
                     <p>Total</p>
-                    <p>S/ <span id="FieldTotalOrder"><%=product.price%></span></p>
+                    <p>S/ <span id="TotalOrder"><%=product.price%></span></p>
+                    <input style="display: none;" name="TotalOrder" value="<%=product.price%>" id="fieldTotalOrder" type="text" >
+
                 </div>
             </div>
             <%  if(isUserAuthenticated){ %>
@@ -77,15 +79,15 @@
                 <h1>Boleta</h1>
                 <div class="field-camp">
                     <p>Snacks: </p>
-                    <p>S/ 0.00</p>
+                    <p id="second-TotalSnacks">S/ 0.00</p>
                 </div>
                 <div class="field-camp">
                     <p>Alquiler por día: </p>
-                    <p>S/ 0.00</p>
+                    <p id="second-TotalRent">S/ 0.00</p>
                 </div>
                 <div class="field-camp-result">
                     <p>Total: </p>
-                    <p>49.95</p>
+                    <p id="second-TotalOrder">49.95</p>
                 </div>
             </div>
 
