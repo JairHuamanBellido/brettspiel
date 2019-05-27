@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/public/css/cardProductBill.css">
 <div class="card-product-form">
 
     <%  if(isUserAuthenticated){ %>
@@ -7,92 +8,112 @@
         <form action=""></form>
         <% }%>
         <div id="first-display-card">
-            <h1 id="price-product"><%= product.price%></h1>
-            <p>Costo de alquiler por dia</p>
-            <div class="fiel">
+            <div class="header">
+                <h1 id="price-product"> <%= product.price%></h1>
+                <p class="Sub-desc">Costo de alquiler por dia</p>
+            </div>
+
+            <div class="field-date">
                 <div class="field-recogida">
-                    <label for="">Fecha de recogida</label><br>
-                    <input id="startRentDate" type="date" name="fechaDeRecogida" placeholder="Ingrese la fecha de recogida">
+                    <label for="">Fecha de recogida</label>
+                    <input id="startRentDate" type="date" name="fechaDeRecogida"
+                        placeholder="Ingrese la fecha de recogida">
                 </div>
                 <div class="field">
-                    <label for="">Fecha de Entrega</label><br>
-                    <input id="endRentDate" onchange="setEndRentDate(this)" type="date" name="fechaDeEntrega" placeholder="Ingrese la fecha de entrega">
+                    <label for="">Fecha de Entrega</label>
+                    <input id="endRentDate" onchange="setEndRentDate(this)" type="date" name="fechaDeEntrega"
+                        placeholder="Ingrese la fecha de entrega">
                 </div>
             </div>
             <div class="snacks-container-card">
-                <a onclick="openModalSnacks()">Desea agregar Snacks</a>
+                    <%  if(isUserAuthenticated){ %>
+                        <img width="48" height="48" src="/public/img/icons/nachos.svg" alt="">
+                        <a onclick="openModalSnacks()">Deseo agregar Snacks</a><br>
+                        <p>Opcional</p>
+                        <% } else{ %>
+                            <a onclick="buy()">Deseo agregar Snacks</a><br>
+                        <% } %>
             </div>
-            <div class="field">
-                <label for="">Cantidad de productos</label>
+            <div class="field-productCant">
+                <label for="">Cantidad de productos:</label>
                 <input type="text" onkeyup="setQuantityProduct(this)" name="cantidadDeProductos" value="1" type="number" id="CantProduct">
             </div>
 
             <% snacks.forEach( snack=>{ %>
-                <input type="text" style="display: none;" value="false" name="<%=snack.name %>" id="<%= snack.name%>field">
+            <input type="text" style="display: none;" value="false" name="<%=snack.name %>" id="<%= snack.name%>field">
             <% })  %>
             <div class="bill-card">
-                <h1>Boleta</h1> 
+                <h1>Boleta</h1>
+                <div class="line"></div>
                 <div class="result-Snacks">
                     <p>Snacks</p>
-                    <p>S/ <span id="TotalSnacks">0.00</span></p>
+                    <p class="result">S/ <span id="TotalSnacks">0.00</span></p>
                     <input id="fieldTotalSnack" style="display: none;" name="SnacksTotal" value="0.00" type="text">
                 </div>
                 <div class="result-rent">
                     <p>Total de alquiler</p>
-                    <p>S/ <span id="TotalRent"><%= product.price %></span></p>
-                    <input style="display: none;" name="RentTotal" value="<%=product.price%>" id="FieldTotalRent" type="text" >
+                    <p class="result">S/ <span id="TotalRent"><%= product.price %></span></p>
+                    <input style="display: none;" name="RentTotal" value="<%=product.price%>" id="FieldTotalRent" type="text">
                 </div>
-                <div class="result-total">
-                    <p>Total</p>
-                    <p>S/ <span id="TotalOrder"><%=product.price%></span></p>
-                    <input style="display: none;" name="TotalOrder" value="<%=product.price%>" id="fieldTotalOrder" type="text" >
+                <div class="result-rent">
+                    <p style="color: #8796E1 !important;font-size: 18px;" >Total</p>
+                    <p style="color: #8796E1 !important;font-weight: 700 !important;" class="result">S/ <span  id="TotalOrder"><%=product.price%></span></p>
+                    <input style="display: none;" name="TotalOrder" value="<%=product.price%>" id="fieldTotalOrder" type="text">
 
                 </div>
             </div>
-            <%  if(isUserAuthenticated){ %>
-            <a onclick="ContinueWithPayment()">Continuar</a>
-            <% } else{ %>
-                <a onclick="buy()">Continuar</a>
-            <% } %>
+            <div class="last-field">
+
+                <%  if(isUserAuthenticated){ %>
+                <a class="btn-continue" onclick="ContinueWithPayment()">Continuar</a>
+                <% } else{ %>
+                <a class="btn-continue" onclick="buy()">Continuar</a>
+                <% } %>
+            </div>
         </div>
         <div id="second-display-card">
-            <h1>Pago con tarjeta</h1>
-            <p>Completa los siguientes campos para adquirir el juego de mesa</p>
+
+            <div class="header">
+                <img src="/public/img/icons/debit-card.svg" alt="">
+                <h1>Pago</h1>
+                <p>Completa los siguientes campos para adquirir el juego de mesa</p>
+            </div>
 
             <div class="field">
                 <label for="">Numero de tarjeta</label>
-                <input name="numeroDeTarjeta" type="text" placeholder="1234 3456 1231 3434">
+                <input class="creditCard-field" name="numeroDeTarjeta" type="text" placeholder="1234 3456 1231 3434">
             </div>
-            <div class="field">
+            <div class="field horizontal" >
                 <div class="sub-field">
                     <label for="">Fecha de expiracion</label>
-                    <input name="fechaDeExpiracionTarjeta" type="text" placeholder="MM/AA">
+                    <input class="medium-field" name="fechaDeExpiracionTarjeta" type="text" placeholder="MM/AA">
 
                 </div>
                 <div class="sub-field">
                     <label for="">CCV</label>
-                    <input name="CCV" type="text" placeholder="CCV">
+                    <input class="medium-field" name="CCV" type="text" placeholder="CCV">
                 </div>
             </div>
 
-            <div class="boleta-detail">
+            <div class="bill-card">
                 <h1>Boleta</h1>
-                <div class="field-camp">
+                <div class="line"></div>
+                <div class="result-Snacks">
                     <p>Snacks: </p>
-                    <p id="second-TotalSnacks">S/ 0.00</p>
+                    <p  class="result" id="second-TotalSnacks">S/ 0.00</p>
                 </div>
-                <div class="field-camp">
+                <div class="result-rent">
                     <p>Alquiler por día: </p>
-                    <p id="second-TotalRent">S/ 0.00</p>
+                    <p class="result" id="second-TotalRent">S/ 0.00</p>
                 </div>
-                <div class="field-camp-result">
+                <div class="result-rent">
                     <p>Total: </p>
-                    <p id="second-TotalOrder">49.95</p>
+                    <p class="result"  style="color: #8796E1 !important;font-weight: 700 !important;" id="second-TotalOrder">49.95</p>
                 </div>
             </div>
 
             <div class="field-payBill">
-                <button>Pagar</button>
+                <button class="btn-continue">Pagar</button>
             </div>
 
         </div>

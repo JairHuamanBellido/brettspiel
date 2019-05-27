@@ -18,10 +18,23 @@
     color: #323c52;
 }
 .product-item h2,.product-item p {
+    font-family: 'Nunito Sans',sans-serif;
     color: inherit;
 }
+.product-item h2{
+    font-size: 18px;
+    font-weight: 700;
+}
 .product-item p{
+    font-size: 12px;
     opacity: .67;
+}
+
+.product-item .Price{
+    color: #5a3ef1;
+    font-family: 'Nunito Sans',sans-serif;
+    font-weight: 700;
+    font-size: 14px;
 }
 .product-item:hover{
     transition: all .1s ease-in-out;

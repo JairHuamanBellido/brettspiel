@@ -1,0 +1,280 @@
+@import url("/public/css/font/font.css");
+
+
+.card-product-form{
+    position: relative;
+}
+#price-product {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #8796E1;
+    text-align: center;
+    margin-left: -14px;
+}
+
+#first-display-card .Sub-desc {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    opacity: .78;
+    color: #7B82A5;
+    text-align: center;
+}
+
+#first-display-card .field-date {
+    width: 100%;
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#first-display-card .field-date label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #576482;
+    margin-bottom: 1em;
+}
+
+#first-display-card .field-date input {
+    border: 1px solid #c8c8c8;
+    width: 142px;
+
+    padding: 8px 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    background: transparent;
+    border-radius: 4px;
+    margin: .5em 0;
+}
+
+.snacks-container-card {
+    display: flex;
+    align-items: center;
+    margin: .75em 0;
+}
+
+.snacks-container-card img {
+    margin: .75em 0;
+}
+
+.snacks-container-card a {
+    background: linear-gradient(45deg, #8190F3, #57D2F2);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 1000px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 1.5em;
+}
+
+.snacks-container-card p {
+    font-size: 10px;
+    font-family: 'Open Sans', sans-serif;
+    color: #576482;
+    opacity: .67;
+}
+
+#first-display-card .field-productCant {
+    display: flex;
+    align-items: center;
+
+}
+
+#first-display-card .field-productCant label{
+    font-size: 14px;
+    font-weight: 600;
+    color: #576482;
+    margin-right: 1em;
+    font-family: 'Open Sans',sans-serif;
+}
+
+#first-display-card .field-productCant input{
+    border: 1px solid #c8c8c8;
+    font-size: 14;
+    font-family: 'Open Sans',sans-serif;
+    padding: 4px 16px;
+    width: 50px;
+    border-radius: 4px;
+}
+#first-display-card .bill-card, #second-display-card .bill-card{
+    margin-top: 1.5em;
+}
+#first-display-card .bill-card h1,#second-display-card  .bill-card h1{
+    font-family: 'Nunito Sans',sans-serif;
+    font-family: 20px;
+    color: #2d3444;
+    font-family: 700;
+    margin-bottom: 8px;
+}
+
+#first-display-card .bill-card .line,#second-display-card .bill-card .line{
+    width: 100%;
+    height: 5px;
+    border-radius: 999999px;
+    background: linear-gradient(45deg,#BA81F3,#6C8FF1);
+
+}
+
+#first-display-card .bill-card .result-Snacks,#first-display-card .bill-card .result-rent,#first-display-card .bill-card .result-total,
+#second-display-card .bill-card .result-Snacks,#second-display-card .bill-card .result-rent,#second-display-card .bill-card .result-total
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1em 0;
+
+}
+
+#first-display-card .bill-card .result-Snacks p, #first-display-card .bill-card .result-rent p,#first-display-card .bill-card .result-total p,
+#second-display-card .bill-card .result-Snacks p, #second-display-card .bill-card .result-rent p,#second-display-card .bill-card .result-total p
+{
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #576482;
+
+}
+#first-display-card .bill-card .result,
+#second-display-card .bill-card .result
+{
+    font-size: 14px !important;
+    opacity: .78;
+    font-weight: 400 !important;
+
+}
+
+#first-display-card .last-field,
+#second-display-card .last-field
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5em;
+}
+#first-display-card .btn-continue,
+#second-display-card .btn-continue
+{
+
+    background: linear-gradient(45deg,#BA81F3,#6C8FF1);
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 100000px;
+    cursor: pointer;
+    padding: 12px 24px;
+    width: 150px;
+    margin: 0 auto;
+    border: none;
+    text-align: center;
+
+}
+#TotalOrder{
+    font-size: 18px;
+}
+
+#waitingLoadCard{
+    display: none;
+    justify-content: center;
+    align-items:center ;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+#waitingLoadCard p{
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #7081a8;
+}
+
+
+
+
+#second-display-card .header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#second-display-card .header h1{
+    font-family: Qanelas;
+    font-size: 24px;
+    color: #576482;
+    margin-top: 1em;
+}
+
+#second-display-card .header p{
+    font-family: 'Open Sans',sans-serif;
+    font-size: 14px;
+    color: #576482;
+    opacity: .67;
+    text-align: center;
+    margin-bottom: 1.25em;   
+
+}
+
+
+#second-display-card .field{
+    display: flex;
+    flex-direction: column;
+}
+
+#second-display-card .horizontal{
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start;
+}
+
+#second-display-card .field label{
+    font-size: 14px;
+    font-weight: 600;
+    color: #576482;
+    margin-right: 1em;
+    font-family: 'Open Sans',sans-serif;
+}
+
+#second-display-card .field input{
+    border: 1px solid #c8c8c8;
+    font-size: 14;
+    font-family: 'Open Sans',sans-serif;
+    padding: 4px 16px;
+    width: 200px;
+    border-radius: 4px;
+}
+
+
+.creditCard-field,#second-display-card .medium-field{
+    margin: .5em 0;
+    border: 1px solid #c8c8c8;
+    font-size: 16px !important ;
+    font-family: 'Open Sans',sans-serif !important;
+    padding: 12px 16px !important;
+    width: 250px !important;
+    border-radius: 4px !important;
+}
+
+#second-display-card .sub-field{
+   
+
+    display: flex;
+    flex-direction: column;
+    margin-right: 1em;
+}
+#second-display-card .medium-field{
+    width: 100px !important;
+}
+
+#second-display-card .field-payBill{
+    width: 100%;
+    margin-top: 1.5em;
+    display: flex;
+    justify-content: center;
+}

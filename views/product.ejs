@@ -21,43 +21,74 @@
 
     <div class="product-container">
         <div class="all-about-product">
-            <h1> <%= product.name %></h1>
-            <p><%= product.tipe %></p>
+            <div class="product-container-detail">
+                <div class="product-img">
+                    <img src="<%=product.url%>" alt="">
+                </div>
+                <div class="product-description">
+                    <div class="header">
+                        <div class="title">
+                            <h1> <%= product.name %></h1>
+                            <p><%= product.tipe %></p>
+                        </div>
+                        <div class="options-product">
+                            <!-- CUANDO EL USUARIO NO SE HA LOGUEADO -->
+                            <% if(!isUserAuthenticated){ %>
+                            <button class="product-addCartbtn" onclick="buy()">
+                                <img width="16" height="16" src="/public/img/icons/cart.svg" alt="">
+                                Añadir al carro
+                            </button>
+
+                            <!-- CUANDO EL USUARIO SE HA LOGUEADO Y NO TIENE EL PRODUCTO EN SU CARRO -->
+                            <% } if( (isProductInCart == undefined || isProductInCart != true) && isUserAuthenticated ){ %>
+
+                            <form action="/addToCart" method="POST">
+                                <button type="submit" class="product-addCartbtn">
+                                    <img width="16" height="16" src="/public/img/icons/cart.svg" alt="">
+
+                                    Añadir al carro
+                                </button>
+
+                            </form>
+
+                            <!-- CUANDO EL USUARIO SE HA LOGUEADO Y TIENE EL PRODUCTO EN SU CARRO -->
+                            <% } if(isProductInCart == true){%>
+
+                            <form action="/deleteProductFromCart/<%=product.id%>/<%=user.id%>" method="POST">
+                                <input class="leaveCar-btn" type="submit" value="Sacar del carrito">
+                            </form>
+                            <% }  %>
+                            <% if( isUserAuthenticated){ %>
+                            <button class="addFavoriteList-btn" onclick="document.getElementById('modal-favoriteGameList').style.display='flex'">
+                                <svg id="favorite" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    viewBox="0 0 48.328 44.463">
+                                    <path id="Trazado_212" data-name="Trazado 212"
+                                        d="M24.164,64.863,20.781,61.48C8.216,50.364,0,42.873,0,33.69A13.1,13.1,0,0,1,13.29,20.4a14.522,14.522,0,0,1,10.874,5.075A14.522,14.522,0,0,1,35.039,20.4a13.1,13.1,0,0,1,13.29,13.29c0,9.183-8.216,16.673-20.781,27.789Z"
+                                        transform="translate(0 -20.4)" fill="#ff6575" />
+                                </svg>
+                                Añadir a favoritos
+                            </button>
+                            <% } %>
+
+                        </div>
+                    </div>
+                    <div class="detail-description">
+                        <p><%= product.description %>
+                            <%= product.description %>
+                            <%= product.description %>
+                            <%= product.description %>
+                            <%= product.description %>
+                            <%= product.description %>
+                            <%= product.description %>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
             <br>
             <br>
-            <p><%= product.description %>
-                <%= product.description %>
-                <%= product.description %>
-                <%= product.description %>
-                <%= product.description %>
-                <%= product.description %>
-                <%= product.description %>
-            </p>
 
 
-            <!-- CUANDO EL USUARIO NO SE HA LOGUEADO -->
-            <% if(!isUserAuthenticated){ %>
-            <button onclick="buy()">Añadir al carro</button>
-
-            <!-- CUANDO EL USUARIO SE HA LOGUEADO Y NO TIENE EL PRODUCTO EN SU CARRO -->
-            <% } if( (isProductInCart == undefined || isProductInCart != true) && isUserAuthenticated ){ %>
-
-
-            <form action="/addToCart" method="POST">
-                <input type="submit" value="Añadir al carro">
-            </form>
-
-            <!-- CUANDO EL USUARIO SE HA LOGUEADO Y TIENE EL PRODUCTO EN SU CARRO -->
-            <% } if(isProductInCart == true){%>
-
-            <form action="/deleteProductFromCart/<%=product.id%>/<%=user.id%>" method="POST">
-                <input type="submit" value="Sacar del carrito">
-            </form>
-            <% }  %>
-            <% if( isUserAuthenticated){ %>
-            <button onclick="document.getElementById('modal-favoriteGameList').style.display='flex'">Añadir a
-                favoritos</button>
-            <% } %>
         </div>
 
         <div class="product-form">
@@ -66,7 +97,7 @@
     </div>
     <script src="/public/js/modalSnacks.js"></script>
     <script src="/public/js/DateAlgorithm.js"></script>
-    <script  src="/public/js/productPage.js"></script>
+    <script src="/public/js/productPage.js"></script>
 
 </body>
 

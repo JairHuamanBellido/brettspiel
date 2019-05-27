@@ -24,7 +24,7 @@ const ContinueWithPayment = () => {
     document.getElementById("second-TotalRent").textContent = fieldTotalRent.value;
     document.getElementById("second-TotalOrder").textContent = fieldTotalOrder.value;
     firstViewOfCardProdct.style.display = "none";
-    waitingViewOfCardProduct.style.display = "block";
+    waitingViewOfCardProduct.style.display = "flex";
     loader.setAttribute("class", "loader-effect");
     console.log("Esperando");
     setTimeout(() => {
@@ -57,7 +57,9 @@ const setEndRentDate = (e) => {
 }
 
 const setQuantityProduct = (e) => {
+    
     if(typeof realTotal === 'undefined'){
+        console.log("Seteando");
         realTotal = parseFloat(priceProduct);
     }
     console.log("Real total: "+realTotal);

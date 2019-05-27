@@ -1,11 +1,120 @@
+@import url("/public/css/font/font.css");
+
+
 .product-container{
     width: 100vw;
     display: flex;
     position: relative;
 }
 
+.product-container .product-container-detail{
+    display: flex;
+}
+.product-container .product-container-detail .product-description{
+    padding-top: 3em;
+    margin: 0 2em;
+}
+.product-container .product-container-detail .product-description .header{
+    display: flex;
+    align-items: center;
+
+}
+.product-container .product-container-detail .product-description .header h1{
+    font-family: 'Nunito Sans',sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #29303f;
+}
+
+.product-container .product-container-detail .product-description .header p{
+    font-family: 'Nunito Sans',sans-serif;
+    
+    font-size: 16px;
+    color: #576482;
+    opacity: .87;
+}
+
+.product-container .product-container-detail .product-description .header .title{
+    width: 200px;
+}
+.product-container .product-container-detail .product-description .product-addCartbtn{
+    background: rgba(131,138,242,.1);
+    border: none;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    color: rgba(131,138,242,1);
+    border-radius: 1000px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.product-container .product-container-detail .product-description .product-addCartbtn img{
+    margin-right: 1em;
+}
+.product-container .product-container-detail .product-description .leaveCar-btn{
+    background: rgba(131,138,242,1);
+    color: #fff;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    border-radius: 1000px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
+.product-container .product-container-detail .product-description .addFavoriteList-btn{
+    margin-left: 1.5em;
+    background: rgba(255,67,76,.1);
+    color: rgba(255, 67, 76, 1);
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    border-radius: 1000px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+.product-container .product-container-detail .product-description .addFavoriteList-btn #favorite{
+    margin-right: 1em;
+}
+
+.product-container .product-container-detail .product-description .addFavoriteList-btn:hover{
+    transition: all .2s ease-out;
+    background: rgba(255, 67, 76, 1);
+    color: #fff;
+}
+
+.product-container .product-container-detail .product-description .addFavoriteList-btn:hover #Trazado_212{
+    transition: all .2s ease-in-out;
+    fill: #fff;
+}
+
+
+.product-container .product-container-detail .product-description .product-addCartbtn:hover{
+    transition: all .2s ease-in-out;
+    background: rgba(131,138,242,.2);
+}
+
+.product-container .product-container-detail .product-description .options-product{
+    display: flex;
+}
+
+.product-container .product-description .detail-description{
+    margin-top: 2em;
+}
+.product-container .product-description .detail-description p {
+    font-family: 'Open Sans',sans-serif;
+    font-size: 14px;
+    color: #576482;
+}
+
 .all-about-product{
-    margin: 2em 2em 2em 5em;
+    margin: 2em 2em 2em 2em;
    
 }
 .all-about-product{
@@ -59,22 +168,19 @@
  
 
     50%{
-        width: 60px;
-        height: 60px;
+  
         border: 2px solid #8190F3;
     }
 
     70%{
-        width: 40px;
-        height: 40px;
+  
         border: 4px solid #BA81F3;
     }
     80%{
-        border: 4px solid #33ffaa;
+        border: 4px solid #6C8FF1;
     }
     100%{
-        width: 30px;
-        height: 30px;
+    
         transform: rotate(360deg);
         
     }
