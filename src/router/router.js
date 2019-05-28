@@ -72,7 +72,7 @@ Router.get('/product/:id', isUserAuthenticated, async (req, res) => {
 
             let ar2 = undefined;
             if (ar.length > 0) {
-                ar2 = await db.getTableListProductByListGame(ar);
+                ar2 = await db.getTableListProductByListGame(req.session.idUser.id);
             }
 
             res.render('product', {
@@ -144,7 +144,8 @@ Router.get('/JuegosFavoritos', async (req, res) => {
         if (gameList.length > 0) {
 
 
-            const ar = await db.getTableListProductByListGame(gameList);
+            const ar = await db.getTableListProductByListGame(req.session.idUser.id);
+            
             res.render('FavoriteGames', {
                 user: req.session.idUser,
                 ListFavoriteGame: gameList,

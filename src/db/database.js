@@ -155,10 +155,10 @@ module.exports.getProductFromAllListFavorite = async (idClient) => {
 module.exports.getTableListProductByListGame = async (idClient) => {
 
 
-    const query = `SELECT lfp.* FROM ${process.env.LISTAFAVORITEGAME_PRODUCT_TABLE} lfp WHERE lfp.list_id IN ( SELECT lfg.id FROM ${process.env.LISTFAVORITEGAME_TABLE} lfg WHERE lfg.client_id=8)`;
+    const query = `SELECT lfp.* FROM ${process.env.LISTAFAVORITEGAME_PRODUCT_TABLE} lfp WHERE lfp.list_id IN ( SELECT lfg.id FROM ${process.env.LISTFAVORITEGAME_TABLE} lfg WHERE lfg.client_id=${idClient})`;
     const res = await pool.query(query);
-
-
+ 
+    
     return res.rows;
 }
 
