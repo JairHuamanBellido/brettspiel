@@ -1,6 +1,8 @@
+@import url("/public/css/font/font.css");
+
 #snackModal{
     display: none;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
@@ -12,12 +14,120 @@
 }
 
 #snackModal .snackModalContainer{
-    width: 600px;
-    height: 400px;
+    width: 70%;
+    height: 700px;
     background: #fff;
     border-radius: 5px;
+    position: relative;
 }
 
 #snackModal .snackModalContainer h1,#snackModal .snackModalContainer p{
     color: #444;
+}
+
+#snackModal .snackModalContainer .header-snack{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 2em;
+}
+#snackModal .snackModalContainer .header-snack h1{
+    margin: 1em 0 .5em 0;
+    font-family: Qanelas;
+    font-size: 24px;
+    color: #596083;
+}
+#snackModal .snackModalContainer .header-snack .line{
+    width: 200px;
+    height: 5px;
+    border-radius: 190px;
+    background: linear-gradient(45deg,#81F3DC,#57D2F2);
+    margin-bottom: .5em;
+}
+
+
+#snackModal .snackModalContainer .header-snack p{
+    font-size: 18px;
+    font-family: 'Nunito Sans',sans-serif;
+    color: #576482;
+}
+
+#snackModal .snackModalContainer .list-Snacks{
+    width: 80%;
+    margin: 3.5em auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+#snackModal .snackModalContainer .list-Snacks .snack-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#snackModal .snackModalContainer .list-Snacks .snack-item img{
+    margin-bottom: .75em;
+}
+#snackModal .snackModalContainer .list-Snacks .snack-item p{
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 16px;
+    color: #576482;
+}
+#snackModal .snackModalContainer .list-Snacks .snack-item .snack-price{
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #576482;
+}
+#snackModal .snackModalContainer .list-Snacks .snack-item .options{
+    display: flex;
+    justify-content: space-around;
+    background: #E9F0FF;
+    width: 120px;
+    padding: 8px 12px;
+    border-radius: 10000px;
+    margin-top: 1em;
+    color: #8796E1;
+}
+
+#snackModal .snackModalContainer .list-Snacks .snack-item .options button{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #8796E1;
+    font-size: 16px;
+    font-family: 'Nunito Sans',sans-serif;
+    font-weight: 700;
+}
+
+#snackModal .snackModalContainer .result-snack-modal{
+    width: 100%;
+    margin-top: 2em;
+    text-align: center;
+}
+
+#snackModal .snackModalContainer .result-snack-modal p{
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 18px;
+    text-align: center;
+    color: #7B82A5;
+}
+
+#snackModal .snackModalContainer .result-snack-modal .SnacksPrice{
+    font-weight: 700;
+    color: #576482;
+}
+
+#snackModal .snackModalContainer  .close-snackModal-btn{
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    transform: translate(-5%,-10%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }

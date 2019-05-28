@@ -1,21 +1,39 @@
 <link rel="stylesheet" href="/public/css/snacksModal.css">
 <div id="snackModal">
     <div class="snackModalContainer">
-        <h1>Todos los Snacks</h1>
-        <% snacks.forEach(snack=>{ %>
-            <p><%= snack.name %></p>
-            <p id="<%=snack.name%>price"><%= snack.price %></p>
+        <div class="header-snack">
+
+            <img src="/public/img/icons/nachos.svg" alt="">
+            <h1>Para comer y beber</h1>
+            <div class="line"></div>
+            <p>Mira estos productos que pueden acompañarte en cada partida jugada</p>
+        </div>
             
-            <div class="options" data-target="<%=snack.id%>" id="<%=snack.name%>">
-                <button disabled onclick="DownQuantity(this)">Down</button>
-                <p>0</p>
-                <button onclick="UpQuantity(this)">Up</button>
+        <div class="list-Snacks">
+
+            <% snacks.forEach(snack=>{ %>
+            <div class="snack-item">
+
+                <img src="<%=snack.url%>" alt="">
+                <p><%= snack.name %></p>
+                <p class="snack-price" id="<%=snack.name%>price"><%= snack.price %></p>
+                
+                <div class="options" data-target="<%=snack.id%>" id="<%=snack.name%>">
+                    <button disabled onclick="DownQuantity(this)">-</button>
+                    <p>0</p>
+                    <button onclick="UpQuantity(this)">+</button>
+                </div>
             </div>
+                
 
+            <% }) %>
+        </div>
+        <div class="result-snack-modal">
+            <p>Total S/ <span class="SnacksPrice" id="TotalSnackModal">0.00</span></p>
 
-        <% }) %>
-        <p>Total S/ <span id="TotalSnackModal">0.00</span></p>
-        <button onclick="document.getElementById('snackModal').style.display='none';">Close</button>
+        </div>
+        <button  class="close-snackModal-btn" onclick="document.getElementById('snackModal').style.display='none';">
+        <img src="/public/img/icons/close.svg" alt="">
+        </button>
     </div>
 </div>
-
