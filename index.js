@@ -10,7 +10,7 @@ app.use(session({
     secret: process.env.KEYSECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false }
   }))
 
 
