@@ -5,12 +5,12 @@ const app = express();
 const router =  require('./src/router/router')
 const session =  require('express-session');
 
-app.set('trust proxy', 1)
+//app.set('trust proxy', 1)
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false }
   }))
 
 
