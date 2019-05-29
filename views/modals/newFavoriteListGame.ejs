@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/public/css/Modal-newlist.css">
+<div id="modal-NewFavoriteListGame">
+    <div class="modal-newFavoriteList" id="modal-card-NewFavoriteListGame">
+        <div class="header">
+            <img src="/public/img/icons/dragon.svg" width="96" height="96" alt="">
+            <h1>Nueva lista de juegos favoritos</h1>
+            <p>Arma tu propia coleccion</p>
+        </div>
+        <form autocomplete="off" action="/addNewListGame" method="POST">
+            <div class="field">
+                <label for="">Nombre de la lista de juego</label>
+                <input required type="text" name="favoriteList" placeholder="Estrategia, Cartas, Familia">
+
+            </div>
+
+
+            <div class="field submit">
+                <input type="submit" value="Añadir">
+
+            </div>
+
+        </form>
+
+        <button id="closeModalListFavoriteGame" onclick="document.getElementById('modal-NewFavoriteListGame').style.display='none';">
+            <img src="/public/img/icons/close.svg" alt="">
+        </button>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+@import url('/public/css/font/font.css');
+
+.perfil-view{
+    display: flex;
+}
+
+
+.perfil-view .user-sidebar{
+    width: 20%;
+    padding: 120px 16px 16px 48px;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    
+}
+
+.perfil-view .user-sidebar .nav-link{
+    width :100%;
+    margin: 2em 0;
+    padding: 12px 24px;
+
+
+    
+}
+.perfil-view .user-sidebar .nav-link a{
+    display: flex;
+    align-items: center;
+    color: #3d465a;
+    font-family: 'Nunito Sans',sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    opacity: .67;
+}
+.perfil-view .user-sidebar .nav-link a:active{
+    text-decoration: none;
+    color: #3d465a;
+}
+
+.perfil-view .user-sidebar .nav-link a img{
+    margin-right: 1.5em;
+}
+
+.perfil-view > div:nth-child(4){
+    padding: 5em 3em 5em 3em;
+    width: 80%;
+}
