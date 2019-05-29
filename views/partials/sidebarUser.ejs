@@ -2,13 +2,52 @@
 <div class="user-sidebar">
 
 
-    <a href="/Perfil">Perfil</a>
-    <a href="/MisBoletas">Boletas</a>
-    <a href="/JuegosFavoritos">Juegos Favoritos</a>
-    <a href="/Carrito">Mi carrito</a>
+    <div class="nav-link">
+        <a  class="nav-options" class="" href="/Perfil">
+            <img width="22" height="22" src="/public/img/icons/Info.svg" alt="">
+            Perfil
+        </a>
 
-    <form action="/logout" method="POST">
-        <input type="submit" value="Salir de la cuenta">
-    </form>
+    </div>
 
+    <div class="nav-link">
+        <a class="nav-options"  class="" href="/MisBoletas">
+            <img width="22" height="22" src="/public/img/icons/IconBoleta.svg" alt="">
+            Boletas
+        </a>
+
+    </div>
+
+    <div class="nav-link">
+        <a class="nav-options" class="" href="/JuegosFavoritos">
+            <img width="22" height="22" src="/public/img/icons/favorite.svg" alt="">
+            Juegos Favoritos
+        </a> </div>
+
+
+    <div class="nav-link">
+        <a  class="nav-options" class="" href="/Carrito">
+            <img width="22" height="22" src="/public/img/icons/cart.svg" alt="">
+            Mi carrito
+        </a>
+    </div>
 </div>
+
+
+<script>
+    let a = document.getElementsByClassName("nav-options");
+    for (let i = 0; i < a.length; i++) {
+        if(a.item(i).getAttribute("href") == window.location.pathname){
+            console.log(a.item(i));
+           
+            a.item(i).style.opacity="1";
+            a.item(i).parentElement.style.borderRight="3px solid #7a24d4";
+            
+            break;
+
+        }
+        
+    }
+    
+
+</script>

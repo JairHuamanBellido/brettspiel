@@ -6,16 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profile</title>
+    <link rel="stylesheet" href="/public/css/profilesviews.css">
 </head>
 
 <body>
     <%- include('partials/header') -%>
 
-    <%- include('partials/sidebarUser') %>
-    <div class="profile-container">
-        <h1><%= user.first_name %></h1>
-        <p><%= user.last_name%></p>
+    <div class="profile-container perfil-view">
 
+        <%- include('partials/sidebarUser') %>
+
+        <div class="profile-view">
+            <h1><%= user.first_name %></h1>
+            <p><%= user.last_name%></p>
+
+        </div>
     </div>
 
 </body>

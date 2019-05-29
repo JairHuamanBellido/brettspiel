@@ -6,48 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Juegos Favoritos</title>
+    <link rel="stylesheet" href="/public/css/profilesviews.css">
 </head>
 
 <body>
     <%- include('partials/header') -%>
+    <%- include('modals/newFavoriteListGame') -%>
+    <div class="favoriteGames-container perfil-view">
+        <%- include('partials/sidebarUser') %>
+        <div class="favoriteGames-container ">
+        
+            <h1>Favorites Games</h1>
+            <button onclick="document.getElementById('modal-NewFavoriteListGame').style.display='flex';" >Nueva lista de juego</button>
 
-    <%- include('partials/sidebarUser') %>
-    <div class="favoriteGames-container">
-        <form action="/addNewListGame" method="POST">
-            <input required type="text" name="favoriteList" placeholder="Ingrese la lista de juego">
-            <input type="submit" value="Agregar">
+            <% if(ListFavoriteGame.length > 0){%>
+            <% ListFavoriteGame.forEach( async(listGame)=>{%>
 
-        </form>
-
-        <h1>Favorites Games</h1>
-        <% if(ListFavoriteGame.length > 0){%>
-        <% ListFavoriteGame.forEach( async(listGame)=>{%>
-            
-            <h2> Lista de juego:  <span style="font-size: 14px;color:#232456;"><%= listGame.name%></span></h2>
+            <h2> Lista de juego: <span style="font-size: 14px;color:#232456;"><%= listGame.name%></span></h2>
             <form action="/deleteFavoriteList/<%= listGame.id %>" method="POST">
                 <input type="submit" value="Eliminar lista">
-            </form>     
-            
+            </form>
+
             <% if(products.length > 0) {%>
-                <% products.forEach(obj=>{ %>
-                    <% if(isProductInList(obj.id,listGame.id)){ %>
-                    <p><%= obj.id %> - <%= obj.name %></p>
-                    <form action="/deleteProductFromFavoriteList/<%= obj.id %>/<%= listGame.id %>" method="POST">
-                        <input type="submit" value="Eliminar">
-                    </form>
-                    <% } %>
-                <% }) %>
+            <% products.forEach(obj=>{ %>
+            <% if(isProductInList(obj.id,listGame.id)){ %>
+            <p><%= obj.id %> - <%= obj.name %></p>
+            <form action="/deleteProductFromFavoriteList/<%= obj.id %>/<%= listGame.id %>" method="POST">
+                <input type="submit" value="Eliminar">
+            </form>
+            <% } %>
+            <% }) %>
             <% } %>
 
 
             <br>
             <hr>
-        <% }); %>
-        
-        <% } else{%>
-            <p>No tienes lista de juegos favoritas</p>
-        <%} %>
+            <% }); %>
 
+            <% } else{%>
+            <p>No tienes lista de juegos favoritas</p>
+            <%} %>
+        </div>
 
     </div>
 
