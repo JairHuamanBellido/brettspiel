@@ -94,9 +94,9 @@ module.exports.removeProductFromCart = async (cart_id, product_id) => {
 
 
 // AGREGAR UNA NUEVA LISTA DE JUEGOS FAVORITOS
-module.exports.addNewFavoriteList = async (name, id) => {
-    const data = [name, id];
-    const query = `INSERT INTO ${process.env.LISTFAVORITEGAME_TABLE}(name,client_id) VALUES ($1,$2)`;
+module.exports.addNewFavoriteList = async (name,url, id) => {
+    const data = [name, id,url];
+    const query = `INSERT INTO ${process.env.LISTFAVORITEGAME_TABLE}(name,client_id,url) VALUES ($1,$2,$3)`;
     await pool.query(query, data).then(() => {
         console.log("Lista de juegos creada con exito en la bd");
     }).catch(e => {

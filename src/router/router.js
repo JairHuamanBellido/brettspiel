@@ -240,9 +240,9 @@ Router.post('/addToCart', async (req, res) => {
 
 // AGREGAR UNA LISTA DE JUEGOS FAVORITOS POST
 Router.post('/addNewListGame', async (req, res) => {
-    const { favoriteList } = req.body;
-
-    await db.addNewFavoriteList(favoriteList, req.session.idUser.id);
+    const { favoriteList,urlListgame } = req.body;
+    console.log(req.body);
+    await db.addNewFavoriteList(favoriteList,urlListgame, req.session.idUser.id,);
 
 
     res.redirect(req.session.lastURL);
