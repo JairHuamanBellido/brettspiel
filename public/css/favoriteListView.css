@@ -50,6 +50,19 @@
     
     justify-content: space-between
 }
+.listgame-item-container .header-item-list .header-info,.listgame-item-container .header-item-list .header-info .about{
+    display: flex;
+    align-items: center;
+}
+.listgame-item-container .header-item-list .header-info .about{
+    flex-direction: column;
+    margin-left: 1em;
+}
+.listgame-item-container .header-item-list .header-info .about p{
+    font-family: 'Nunito Sans',sans-serif;
+    opacity: .87;
+    font-size: 18px;
+}
 .listgame-item-container h2{
     font-family: 'Nunito Sans',sans-serif;
     font-size: 24px;

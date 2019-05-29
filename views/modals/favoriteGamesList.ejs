@@ -1,32 +1,41 @@
 <link rel="stylesheet" href="/public/css/modalFavoriteListGames.css">
 <div id="modal-favoriteGameList">
     <div class="modal-containerFavoriteGamesList">
-        <p>Estas viendo el product <%= product.id %></p>
-        <% list.forEach ( listGame=>{ %>
+        <div class="header">
+            <img width="64" height="64" src="/public/img/icons/favorite.svg" alt="">
+            <h1>Añade este juego a tu lista!</h1>
+            <div class="line"></div>
+        </div>
 
-            <div style="display:flex;">
+        <div class="container-list-games">
+
+            <% list.forEach ( listGame=>{ %>
+
+            <div class="item-listgame" style="display:flex;">
+                    <div class="info-list">
+                        <img width="32" height="32" src="<%=listGame.url%>" alt="">
+                        <h3><%= listGame.name %></h3>
+                    </div>
                 <% if(!isProductInFavoriteList(product.id,listGame.id)){%>
-                <p><%= listGame.name %></p>
+
 
                 <form action="/addProductToFavoriteList/<%=listGame.id %>/<%=product.id%>" method="POST">
-                    <input type="submit" value="Agregar">
+                    <input  id="btn-add" type="submit" value="Agregar">
                 </form>
                 <% } else{%>
-                    <form action="/deleteProductFromFavoriteList/<%=product.id %>/<%=listGame.id%>" method="POST">
-                        <input type="submit" value="Eliminar de favoritos">
-                    </form>
+                <form action="/deleteProductFromFavoriteList/<%=product.id %>/<%=listGame.id%>" method="POST">
+                    <input id="btn-delete"  type="submit" value="Eliminar">
+                </form>
                 <%} %>
             </div>
+            <% }) %>
+        </div>
 
-
-
-
-        <% }) %>
-
-        <button onclick="document.getElementById('modal-favoriteGameList').style.display='none'">close</button>
+        <button id="btn-closeModal" onclick="document.getElementById('modal-favoriteGameList').style.display='none'">
+            <img src="/public/img/icons/close.svg" width="16" height="16" alt="">
+        </button>
 
     </div>
 
 
 </div>
-

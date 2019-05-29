@@ -29,7 +29,11 @@
             <div class="listgame-item-container">
                 <div class="header-item-list">
                     <div class="header-info">
-                        <h2> <%= listGame.name%></h2>
+                        <img src="<%=listGame.url%>" alt="" width="48" height="48">
+                        <div class="about">
+                            <h2> <%= listGame.name%></h2>
+
+                        </div>
 
                     </div>
 
@@ -76,8 +80,8 @@
                     <% } %>
                 </div>
 
-                <% }); %>
             </div>
+                <% }); %>
 
             <% } else{%>
             <p>No tienes lista de juegos favoritas</p>

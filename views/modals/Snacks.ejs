@@ -3,7 +3,7 @@
     <div class="snackModalContainer">
         <div class="header-snack">
 
-            <img src="/public/img/icons/nachos.svg" alt="">
+            <img width="96" height="96" src="/public/img/icons/nachos.svg" alt="">
             <h1>Para comer y beber</h1>
             <div class="line"></div>
             <p>Mira estos productos que pueden acompañarte en cada partida jugada</p>
@@ -14,7 +14,7 @@
             <% snacks.forEach(snack=>{ %>
             <div class="snack-item">
 
-                <img src="<%=snack.url%>" alt="">
+                <img  width="100" height="100" src="<%=snack.url%>" alt="">
                 <p><%= snack.name %></p>
                 <p class="snack-price" id="<%=snack.name%>price"><%= snack.price %></p>
                 
@@ -33,7 +33,7 @@
 
         </div>
         <button  class="close-snackModal-btn" onclick="document.getElementById('snackModal').style.display='none';">
-        <img src="/public/img/icons/close.svg" alt="">
+        <img width="24" height="24" src="/public/img/icons/close.svg" alt="">
         </button>
     </div>
 </div>

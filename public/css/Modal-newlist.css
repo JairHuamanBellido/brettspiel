@@ -103,6 +103,23 @@
     transition: all .2s ease-in-out;
     opacity: 1;
 }
+.modal-newFavoriteList form .field .list-icons{
+    display: flex;
+    margin-top: .5em;
+
+}
+.modal-newFavoriteList form .field .list-icons img{
+    transition: all .2s ease-in-out;
+    margin-right: 2em;
+    opacity: .37;
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+
+.modal-newFavoriteList form .field .list-icons img:hover{
+    opacity: 1;
+}
+
 .modal-newFavoriteList form .submit{
     margin-top: 3em !important;
 }
@@ -115,4 +132,11 @@
     border: none;
     background: transparent;
     cursor: pointer;
+}
+
+.clicked{
+    transition: all .2s ease-in-out;
+    opacity: 1 !important;
+    width: 48px !important;
+    height: 48px !important;
 }

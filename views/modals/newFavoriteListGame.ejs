@@ -9,20 +9,43 @@
         <form autocomplete="off" action="/addNewListGame" method="POST">
             <div class="field">
                 <label for="">Nombre de la lista de juego</label>
-                <input required type="text" name="favoriteList" placeholder="Estrategia, Cartas, Familia">
+                <input autofocus required type="text" name="favoriteList" placeholder="Estrategia, Cartas, Familia">
 
             </div>
 
+            <div class="field ">
+                <label for="">Seleccione un icono</label>
+                <div class="list-icons">
+                    <img onclick="selectIcon(this)" src="/public/img/icons/cards.svg" height="40" width="40"
+                        class="icon-listgame" alt="Cartas">
+                    <img onclick="selectIcon(this)" src="/public/img/icons/egg.svg" height="40" width="40"
+                        class="icon-listgame" alt="Niños">
+                    <img onclick="selectIcon(this)" src="/public/img/icons/idea.svg" height="40" width="40"
+                        class="icon-listgame" alt="Estrategia">
+                    <img onclick="selectIcon(this)" src="/public/img/icons/magician.svg" height="40" width="40"
+                        class="icon-listgame" alt="Misterio">
+                    <img onclick="selectIcon(this)" src="/public/img/icons/lightning.svg" height="40" width="40"
+                        class="icon-listgame" alt="Agilidad Mental">
+                </div>
+                <input required style="display:none" type="text" id="url-iconNewList" name="urlListgame" value="">
+
+            </div>
 
             <div class="field submit">
+
+
+
                 <input type="submit" value="Añadir">
 
             </div>
 
         </form>
 
-        <button id="closeModalListFavoriteGame" onclick="document.getElementById('modal-NewFavoriteListGame').style.display='none';">
+        <button id="closeModalListFavoriteGame"
+            onclick="document.getElementById('modal-NewFavoriteListGame').style.display='none';">
             <img src="/public/img/icons/close.svg" alt="">
         </button>
     </div>
 </div>
+
+<script src="/public/js/modalNewListGame.js"></script>
