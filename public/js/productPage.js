@@ -40,14 +40,17 @@ const ContinueWithPayment = () => {
 
 const setEndRentDate = (e) => {
     let totalDays = (dayNumber(e.value) - dayNumber(startDateRent.value));
-
+    let a,b;
+    a = b = 3;
+    console.log("a: "+a);
+    console.log("b: "+b)
     if (cantProduct.value == "0") {
-        totalRent.textContent = totalDays * priceProduct * 1;
-        fieldTotalRent.value = totalDays * priceProduct * 1;
+        totalRent.textContent = Math.round((totalDays * priceProduct * 1)*100)/100;
+        fieldTotalRent.value = Math.round((totalDays * priceProduct * 1)*100)/100;
     }
     else {
-        totalRent.textContent = totalDays * priceProduct * parseInt(cantProduct.value);
-        fieldTotalRent.value = totalDays * priceProduct * parseInt(cantProduct.value);;
+        totalRent.textContent = Math.round((totalDays * priceProduct * parseInt(cantProduct.value))*100)/100;
+        fieldTotalRent.value = Math.round((totalDays * priceProduct * parseInt(cantProduct.value))*100)/100;
     }
 
     realTotal = totalDays * priceProduct;
@@ -57,24 +60,24 @@ const setEndRentDate = (e) => {
 }
 
 const setQuantityProduct = (e) => {
-    
-    if(typeof realTotal === 'undefined'){
+
+    if (typeof realTotal === 'undefined') {
         console.log("Seteando");
         realTotal = parseFloat(priceProduct);
     }
-    console.log("Real total: "+realTotal);
+    console.log("Real total: " + realTotal);
     //console.log(fieldTotalRent.value);
     if (e.value == "0") {
         e.value = 1;
 
     }
     else if (e.value.length == 0) {
-        totalRent.textContent = realTotal;
-        fieldTotalRent.value = realTotal;
+        totalRent.textContent = Math.round(realTotal * 100) / 100;
+        fieldTotalRent.value = Math.round(realTotal * 100) / 100;
     }
     else if (e.value.length > 0) {
-        totalRent.textContent = realTotal * e.value;
-        fieldTotalRent.value = realTotal * e.value;
+        totalRent.textContent = Math.round(realTotal * e.value * 100) / 100;
+        fieldTotalRent.value = Math.round(realTotal * e.value * 100) / 100;
     }
     TotalOrder.textContent = Math.round((parseFloat(fieldTotalRent.value) + parseFloat(snacksField.value)) * 100) / 100;
     fieldTotalOrder.value = TotalOrder.textContent;
