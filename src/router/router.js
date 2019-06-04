@@ -296,9 +296,9 @@ Router.post('/createBill/:idProduct/:idClient', async (req, res) => {
     const { fechaDeRecogida,
         fechaDeEntrega,
         cantidadDeProductos,
-        PiqueoSnax,
+        PiqueoSnax,        
+        IncaCola,
         Pringles,
-        IncaKola,
         SnacksTotal,
         RentTotal,
         TotalOrder,
@@ -306,7 +306,9 @@ Router.post('/createBill/:idProduct/:idClient', async (req, res) => {
         fechaDeExpiracionTarjeta,
         CCV } = req.body;
 
-    const totalSnacks = [Pringles, IncaKola, PiqueoSnax];
+   
+    let totalSnacks = [PiqueoSnax,IncaCola,req.body['Oreo six Pack'],req.body['Papas Lays Mediano'],Pringles];
+    
     await db.createBill(fechaDeRecogida, fechaDeEntrega, parseInt(cantidadDeProductos), totalSnacks,
         parseFloat(SnacksTotal), parseFloat(RentTotal), parseFloat(TotalOrder), numeroDeTarjeta, fechaDeExpiracionTarjeta, CCV,
         req.params.idProduct, req.params.idClient);
