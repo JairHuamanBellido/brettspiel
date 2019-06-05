@@ -52,16 +52,20 @@
 }
 .listgame-item-container .header-item-list .header-info,.listgame-item-container .header-item-list .header-info .about{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 .listgame-item-container .header-item-list .header-info .about{
     flex-direction: column;
     margin-left: 1em;
 }
+.listgame-item-container .header-item-list .header-info .about h2{
+    color: #576482;
+}
 .listgame-item-container .header-item-list .header-info .about p{
     font-family: 'Nunito Sans',sans-serif;
     opacity: .87;
     font-size: 18px;
+    color: #576482;
 }
 .listgame-item-container h2{
     font-family: 'Nunito Sans',sans-serif;

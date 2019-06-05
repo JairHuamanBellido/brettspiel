@@ -23,7 +23,7 @@ isUserAuthenticated = (req, res, next) => {
 
 
 // HOME PAGE
-Router.get('/', isUserAuthenticated,AuthenticationError, async (req, res) => {
+Router.get('/', isUserAuthenticated, AuthenticationError, async (req, res) => {
     const products = await db.getAllProducts();
     req.session.lastURL = req.path;
 
@@ -151,7 +151,6 @@ Router.get('/JuegosFavoritos', async (req, res) => {
                 ListFavoriteGame: gameList,
                 products: await db.getProductFromAllListFavorite(req.session.idUser.id),
                 isProductInList: (productId, listId) => {
-
                     if (ar.length > 0) {
                         let result = ar.some(obj => { return obj.list_id == listId && obj.product_id == productId; })
                         return result;
@@ -160,7 +159,11 @@ Router.get('/JuegosFavoritos', async (req, res) => {
                         return false;
                     }
 
+                },
+                quantityProductsByList: (listId)=>{
+                    return ar.filter(list=>list.list_id == listId).length;
                 }
+                
 
             })
         }
@@ -240,9 +243,9 @@ Router.post('/addToCart', async (req, res) => {
 
 // AGREGAR UNA LISTA DE JUEGOS FAVORITOS POST
 Router.post('/addNewListGame', async (req, res) => {
-    const { favoriteList,urlListgame } = req.body;
+    const { favoriteList, urlListgame } = req.body;
     console.log(req.body);
-    await db.addNewFavoriteList(favoriteList,urlListgame, req.session.idUser.id,);
+    await db.addNewFavoriteList(favoriteList, urlListgame, req.session.idUser.id);
 
 
     res.redirect(req.session.lastURL);
@@ -296,7 +299,7 @@ Router.post('/createBill/:idProduct/:idClient', async (req, res) => {
     const { fechaDeRecogida,
         fechaDeEntrega,
         cantidadDeProductos,
-        PiqueoSnax,        
+        PiqueoSnax,
         IncaCola,
         Pringles,
         SnacksTotal,
@@ -306,9 +309,8 @@ Router.post('/createBill/:idProduct/:idClient', async (req, res) => {
         fechaDeExpiracionTarjeta,
         CCV } = req.body;
 
-   
-    let totalSnacks = [PiqueoSnax,IncaCola,req.body['Oreo six Pack'],req.body['Papas Lays Mediano'],Pringles];
-    
+    let totalSnacks = [PiqueoSnax, IncaCola, req.body['Oreo six Pack'], req.body['Papas Lays Mediano'], Pringles];
+
     await db.createBill(fechaDeRecogida, fechaDeEntrega, parseInt(cantidadDeProductos), totalSnacks,
         parseFloat(SnacksTotal), parseFloat(RentTotal), parseFloat(TotalOrder), numeroDeTarjeta, fechaDeExpiracionTarjeta, CCV,
         req.params.idProduct, req.params.idClient);
