@@ -1,0 +1,30 @@
+@import url('/public/css/font/font.css');
+
+.container-product{
+    display: flex;
+    flex-direction: row;
+}
+
+.Cart-container .list-product{
+    display: flex;
+    margin-top: 1.5em;
+}
+.Cart-container .list-product .container-product{
+    margin: 0 1.5em;
+}
+
+.container-product .infoProduct h3{
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+}
+.container-product .infoProduct p{
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 14px;
+    color: #6c6c6c;
+}
+.container-product button{
+    background: transparent;
+    border: none;
+    
+}
