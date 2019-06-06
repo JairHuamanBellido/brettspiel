@@ -1,0 +1,48 @@
+.bill-container h1{
+    font-family: 'Open Sans',sans-serif;
+    font-size: 20px;
+    color: #2c2d3d;
+}
+
+.bill-container .listofBills{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.bill-container .listofBills .bill-obj{
+    width: 200px;
+    padding: 1.25em;
+    display: flex;
+    border-radius: 5px;
+    background: #F7F8FD;
+    margin: 1em 2em 1em 0;
+    text-decoration: none;
+    font-family: 'Open Sans',sans-serif;
+    cursor: pointer;
+    color: #2c2d3d;
+}
+.bill-container .listofBills .bill-obj:hover{
+    transition: all .1s ease-in-out;
+    background: rgb(213, 220, 248);
+    color: #484848;
+
+}
+.bill-container .listofBills .bill-obj .img-bill-icon{
+    margin-right: 1em;
+}
+
+.bill-container .listofBills .bill-obj .info-bill p{
+    color: inherit;
+
+}
+
+.bill-container .listofBills .bill-obj .info-bill .idBill{
+    opacity: .87;
+    font-family: 'Nunito Sans',sans-serif;
+    font-weight: 600;
+}
+.bill-container .listofBills .bill-obj .info-bill .priceBill{
+    margin-top: .75em;
+    font-size: 18px;
+    font-weight: 600;
+}
