@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mis Boletas</title>
     <link rel="stylesheet" href="/public/css/profilesviews.css">
+    <link rel="stylesheet" href="/public/css/billview.css">
 </head>
 
 <body>
@@ -14,22 +15,30 @@
     <%- include('partials/header') -%>
     <div class="bill-container perfil-view">
         <%- include('partials/sidebarUser') %>
-        <div class="Cart-container">
+        <div>
 
             <h1>Mis boletas</h1>
 
-            <% if(bills.length > 0){%>
-            <% bills.forEach(bill=>{%>
+            <div class="listofBills">
+
+                <% if(bills.length > 0){%>
+                <% bills.forEach(bill=>{%>
+                <a class="bill-obj" href="/Boleta/<%=bill.id%>">
+
+                    <div class="img-bill-icon">
+                        <img src="/public/img/icons/IconBoleta.svg" width="35" height="46" alt="">
+                    </div>
+                    <div class="info-bill">
+                        <p class="idBill">Boleta #<%=bill.id%></p>
+                        <p class="priceBill"> S/<%=bill.totalprice%></p>
+
+                    </div>
 
 
-            <p><%=bill.id%></p>
-            <p><%=bill.totalprice%></p>
-            <form action="/Boleta/<%=bill.id%>" method="GET">
-                <input type="submit" value="Ver boleta">
-            </form>
-            <br>
-            <hr>
-            <%}) %>
+                </a>
+
+                <%}) %>
+            </div>
             <% } else{ %>
             <p>No cuentas con boletas</p>
             <% } %>

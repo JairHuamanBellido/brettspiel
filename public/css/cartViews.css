@@ -12,7 +12,18 @@
 .Cart-container .list-product .container-product{
     margin: 0 1.5em;
 }
+.container-product .infoProduct {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
+.container-product .infoProduct .product-price{
+    font-family: 'Nunito Sans',sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #444;
+}
 .container-product .infoProduct h3{
     font-family: 'Nunito Sans',sans-serif;
     font-size: 16px;
@@ -26,5 +37,6 @@
 .container-product button{
     background: transparent;
     border: none;
+    cursor: pointer;
     
 }
