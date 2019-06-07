@@ -199,11 +199,14 @@ module.exports.createBill = async (startRentDate, endrentdate, quantity, Snacks,
     await pool.query(query, bill).then(async () => {
         const lastIdBill = parseInt((await pool.query(`SELECT last_value FROM ${process.env.BILL_SEQ_TABLE}`)).rows[0].last_value);
 
-        console.log()
+        await pool.query(`INSERT INTO ${process.env.PRODUCT_BILL_TABLE}(bill_id,product_id) VALUES(${lastIdBill},${idProduct})`).then( ()=>{
+            console.log("Producto añadido a la boleta")
+        });
+        
         if (Snacks.length > 0) {
             Snacks.forEach(async (obj) => {
                 await pool.query(`INSERT INTO ${process.env.SNACKS_BILL_TABLE}(bill_id,snack_id,quantity) VALUES (${lastIdBill},${parseInt(obj.slice(7, 8))},${parseInt(obj.slice(5, 6))})`).then(() => {
-                    console.log("Ingresaco snack correctamente");
+                    console.log("Snack añadio a la boleta");
                 }).catch(e => {
                     console.log("Error insercion snack");
                     console.log(e);
@@ -234,5 +237,10 @@ module.exports.getSnacksByBill = async (billId) => {
     const query = `SELECT * FROM ${process.env.SNACK_TABLE} INNER JOIN ${process.env.SNACKS_BILL_TABLE} ON ${process.env.SNACK_TABLE}.id = ${process.env.SNACKS_BILL_TABLE}.snack_id AND bill_id = ${billId}`;
     const res = await pool.query(query);
 
+    return res.rows;
+}
+module.exports.getProductByBill = async(billId)=>{
+    const query = `SELECT * FROM ${process.env.PRODUCT_TABLE} INNER JOIN ${process.env.PRODUCT_BILL_TABLE} ON ${process.env.PRODUCT_TABLE}.id = ${process.env.PRODUCT_BILL_TABLE}.product_id AND bill_id= ${billId}`;
+    const res =  await pool.query(query);
     return res.rows;
 }

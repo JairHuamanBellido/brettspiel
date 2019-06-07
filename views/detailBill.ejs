@@ -19,5 +19,9 @@
         <p>Cantidad: <%= snack.quantity%></p>
 
     <% }) %>
+
+    <% productOfBill.forEach(product=>{ %>
+        <p><%= product.name %></p>
+    <% }) %>
 </body>
 </html>

@@ -130,6 +130,7 @@ Router.get('/Boleta/:idBoleta', async (req, res) => {
     res.render('detailBill', {
         bill: await db.getBillInfoById(req.params.idBoleta),
         snacksOfBill: await db.getSnacksByBill(req.params.idBoleta),
+        productOfBill: await db.getProductByBill(req.params.idBoleta),
         user: req.session.idUser,
         fechaRecogida: fechaRecogida,
         fechaDevolucion: fechaEntrega
@@ -142,10 +143,7 @@ Router.get('/JuegosFavoritos', async (req, res) => {
     await db.getAllFavoriteList(req.session.idUser.id).then(async (gameList) => {
 
         if (gameList.length > 0) {
-
-
-            const ar = await db.getTableListProductByListGame(req.session.idUser.id);
-            
+            const ar = await db.getTableListProductByListGame(req.session.idUser.id);            
             res.render('FavoriteGames', {
                 user: req.session.idUser,
                 ListFavoriteGame: gameList,
@@ -163,8 +161,6 @@ Router.get('/JuegosFavoritos', async (req, res) => {
                 quantityProductsByList: (listId)=>{
                     return ar.filter(list=>list.list_id == listId).length;
                 }
-                
-
             })
         }
         else {
