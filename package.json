@@ -22,7 +22,9 @@
     "ejs": "2.6.1",
     "express": "4.16.4",
     "express-session": "1.16.1",
-    "pg": "7.10.0"
+    "pg": "7.10.0",
+    "request": "2.88.0",
+    "request-promise": "4.2.4"
   },
   "engines": {
     "node": "10.15.3"

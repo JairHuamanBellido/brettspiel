@@ -10,6 +10,8 @@ const pool = new Pool({
 })
 
 
+const  RP = require('request-promise')
+
 // REGISTER A NEW CLIENT
 module.exports.insertNewClient = async (firstName, lastName, email, username, password) => {
 
@@ -243,4 +245,11 @@ module.exports.getProductByBill = async(billId)=>{
     const query = `SELECT * FROM ${process.env.PRODUCT_TABLE} INNER JOIN ${process.env.PRODUCT_BILL_TABLE} ON ${process.env.PRODUCT_TABLE}.id = ${process.env.PRODUCT_BILL_TABLE}.product_id AND bill_id= ${billId}`;
     const res =  await pool.query(query);
     return res.rows;
+}
+
+
+module.exports.getApiData = async(uri)=>{
+    const response =  await RP(uri);
+    return JSON.parse(response);
+
 }

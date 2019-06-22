@@ -185,6 +185,11 @@ Router.get('/Carrito', async (req, res) => {
 })
 
 
+Router.get('/test', async(req,res)=>{
+    console.log(await db.getApiData('https://reqres.in/api/users?page=2'));
+    res.send('xd');
+})
+
 
 
 
