@@ -186,11 +186,12 @@ Router.get('/Carrito', async (req, res) => {
 
 
 Router.get('/test', async(req,res)=>{
-    console.log(await db.getApiData('https://reqres.in/api/users?page=2'));
+    const response = await db.getApiData('https://reqres.in/api/users?page=2');
+    console.log(response);
     res.send('xd');
 })
 
-
+ 
 
 
 // ALL POST METHODS
@@ -199,10 +200,17 @@ Router.get('/test', async(req,res)=>{
 Router.post('/register', async (req, res) => {
 
     const { first_name, last_name, email, user_name, password } = req.body;
-    await db.insertNewClient(first_name, last_name, email, user_name, password).then(obj => {
-        console.log('Accout create')
+    const user = {
+        name:first_name,        
+        email:email,
+        username:user_name,
+        password: password
+    }
+    await db.insertNewClient(user,uri).then(obj => {
+        console.log('Account create')
     }).catch(e => { console.log(e) });
-    res.redirect(req.session.lastURL);
+
+    res.redirect('/test');
 
 })
 

@@ -5,27 +5,45 @@ const pool = new Pool({
     host: process.env.HOSTDB,
     database: process.env.DATABASE,
     password: process.env.PASSWORD,
-    port: process.env.PORTDB,
-    ssl:true
+    port: process.env.PORTDB
 })
 
 
 const  RP = require('request-promise')
 
 // REGISTER A NEW CLIENT
-module.exports.insertNewClient = async (firstName, lastName, email, username, password) => {
+module.exports.insertNewClient = async (user, uri) => {
 
-    const values = [firstName, lastName, email, username, password, 1];
+    
 
-    await pool.query(`INSERT INTO ${process.env.CART_TABLE}(name) VALUES($1)`, [username + 'cart']).then(async () => {
-        console.log('Creando carrito');
+    // await pool.query(`INSERT INTO ${process.env.CART_TABLE}(name) VALUES($1)`, [username + 'cart']).then(async () => {
+    //     console.log('Creando carrito');
 
-    });
+    // });
 
-    const text = `INSERT INTO ${process.env.CLIENT_TABLE}(first_name,last_name,email,username,password,membership) VALUES ($1,$2,$3,$4,$5,$6)`;
-    await pool.query(text, values).then(() => {
-        console.log('Valores insertados');
-    });
+    // const text = `INSERT INTO ${process.env.CLIENT_TABLE}(first_name,last_name,email,username,password,membership) VALUES ($1,$2,$3,$4,$5,$6)`;
+    // await pool.query(text, values).then(() => {
+    //     console.log('Valores insertados');
+    // });
+
+    const options = {
+        method: 'POST',
+        uri: uri,
+        body:{
+            //nombre_del_campoBD: valor
+            email:user.email,
+            name:user.firstName,
+            password:user.password,
+            username:user.username
+        },
+        json:true
+    }
+
+    await RP(options).then( ()=>{
+        console.log("Usuario Ingresado con exito")
+    }).catch(e=>{
+        console.log("Hubo un error en la insercion Furro");
+    })
 
 }
 
