@@ -9,7 +9,7 @@
         <% }%>
         <div id="first-display-card">
             <div class="header">
-                <h1 id="price-product"> <%= product.price%></h1>
+                <h1 id="price-product"> <%= product.price_per_day%></h1>
                 <p class="Sub-desc">Costo de alquiler por dia</p>
             </div>
 
@@ -52,13 +52,13 @@
                 </div>
                 <div class="result-rent">
                     <p>Total de alquiler</p>
-                    <p class="result">S/ <span id="TotalRent"><%= product.price %></span></p>
-                    <input style="display: none;" name="RentTotal" value="<%=product.price%>" id="FieldTotalRent" type="text">
+                    <p class="result">S/ <span id="TotalRent"><%= product.price_per_day %></span></p>
+                    <input style="display: none;" name="RentTotal" value="<%=product.price_per_day%>" id="FieldTotalRent" type="text">
                 </div>
                 <div class="result-rent">
                     <p style="color: #8796E1 !important;font-size: 18px;" >Total</p>
-                    <p style="color: #8796E1 !important;font-weight: 700 !important;" class="result">S/ <span  id="TotalOrder"><%=product.price%></span></p>
-                    <input style="display: none;" name="TotalOrder" value="<%=product.price%>" id="fieldTotalOrder" type="text">
+                    <p style="color: #8796E1 !important;font-weight: 700 !important;" class="result">S/ <span  id="TotalOrder"><%=product.price_per_day%></span></p>
+                    <input style="display: none;" name="TotalOrder" value="<%=product.price_per_day%>" id="fieldTotalOrder" type="text">
 
                 </div>
             </div>

@@ -58,7 +58,7 @@
                             <div class="header">
                                 <div class="info">
                                     <h3><%= obj.name %></h3>
-                                    <p><%= obj.tipe %></p>
+                                    <p><%= obj.categoryName %></p>
                                 </div>
 
                                 <form action="/deleteProductFromFavoriteList/<%= obj.id %>/<%= listGame.id %>"
@@ -68,10 +68,10 @@
                                     </button>
 
                                 </form>
-
                             </div>
+                            
                             <div class="price-product">
-                                <p> S/ <%= obj.price %></p>
+                                <p> S/ <%= obj.price_per_day %></p>
                             </div>
                         </div>
                     </div>
